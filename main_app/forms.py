@@ -1,0 +1,94 @@
+from django import forms
+from django.contrib.auth.forms import (
+    AuthenticationForm, UserCreationForm, PasswordChangeForm,
+    PasswordResetForm, SetPasswordForm
+)
+from django.contrib.auth import get_user_model
+from .models import Item
+
+User = get_user_model()
+
+
+class LoginForm(AuthenticationForm):
+    """ログインフォーム"""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+            # placeholderにフィールドのラベルを入れる
+            field.widget.attrs['placeholder'] = field.label
+
+
+class UserCreateForm(UserCreationForm):
+    """ユーザー登録用フォーム"""
+
+    class Meta:
+        model = User
+        if User.USERNAME_FIELD == 'email':
+            fields = ('email',)
+        else:
+            fields = ('username', 'email')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+
+class UserUpdateForm(forms.ModelForm):
+    """ユーザー情報更新フォーム"""
+
+    class Meta:
+        model = User
+        if User.USERNAME_FIELD == 'email':
+            fields = ('email', 'first_name', 'last_name')
+        else:
+            fields = ('username', 'email', 'first_name', 'last_name')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+
+class MyPasswordChangeForm(PasswordChangeForm):
+    """パスワード変更フォーム"""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+
+class MyPasswordResetForm(PasswordResetForm):
+    """パスワード忘れたときのフォーム"""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+
+class MySetPasswordForm(SetPasswordForm):
+    """パスワード再設定用フォーム(パスワード忘れて再設定)"""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+
+class ItemCreateForm(forms.ModelForm):
+    """作品作成フォーム"""
+
+    class Meta:
+        model = Item
+        fields = ('title',
+                  'title_true',
+                  'title_relate',
+                  'tag',
+                  'movie',
+                  'thumnail',
+                  'synopsis',
+                  'up_status')

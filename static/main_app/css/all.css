@@ -1,0 +1,1536 @@
+/*
+CSSの優先順位は
+ID > Class > Elements > *
+
+記述順は
+* > Elements > Class > ID
+
+ページ毎の記述をする場合は
+all.cssの末尾に下記の形式で追加
+#ID .Class_Name {}
+
+汎用性の高いものはClassまたはElementで作成する
+定義済み一覧は下記参照
+
+HTML Class Name:
+  *** ←HTML code / CSS code→  ***
+  table: table
+  table-cell: table-cell
+  block: block
+  inline-block: inline-block
+
+Font:
+Hover Button:
+Togle Button:
+Icon:
+Togle Icon:
+Link:
+Under Line:
+Thumnail:
+Background Color:
+
+
+
+*/
+
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  text-decoration: none;
+  font-family: 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+  font-size: 14px;
+  color: rgb(50, 50, 50);
+  line-height: 1.6;
+  letter-spacing: 0;
+  font-style: normal;
+}
+
+.table{
+  display: table;
+  border-collapse: separate;
+}
+
+.table-cell{
+  display:table-cell;
+}
+
+.table-row{
+  display:table-row;
+}
+
+.block{
+  display: block;
+}
+
+.inline-block{
+  display: inline-block;
+}
+
+/*----------------------nav-----------------------*/
+
+#nav {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  height: 65px;
+  padding: 0 0;
+  background-color: #131723;
+  top:0;
+  left:0;
+}
+
+#nav .top-nav,
+#nav .top-nav>a {
+  min-width: 130px;
+  height: 62px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  color: rgb(225, 236, 242);
+  font-size: 14px;
+  transition: color ease 0.2s;
+  background-color: #131723;
+}
+
+#nav .top-nav > a > p {
+  color: rgb(68, 159, 209);
+  font-size: 17px;
+  font-weight: bold;
+}
+
+#nav .top-search {
+  width: 100%;
+  height: 65px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0 10px 0 10px;
+}
+
+#nav .top-search > .search{
+  border-radius: 2px;
+  padding: 0 6px;
+  height: 40px;
+  width: 100%;
+  min-width: 120px;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+
+#nav .sub-menu-cell-1 {
+  position: absolute;
+  margin: 0 0 0 0;
+  display: none;
+  width: 220px;
+  top: 61px;
+  color : black;
+  background-color: white;
+  box-shadow:0px 0px 5px 3px rgba(0, 0, 0, 0.3)
+}
+
+#nav .sub,
+#nav .sub > a {
+  position: relative;
+  min-width: 100%;
+  height: 60px;
+  display: inline-block;
+  text-align: left;
+  transition: color ease 0.2s;
+  color : black;
+}
+
+#nav .sub > a {
+  padding: 19px 20px 5px 15px;
+  font-size: 15px;
+}
+
+#nav .sub > a > p {
+  position: absolute;
+  display: table-row;
+  color: rgb(120, 120, 120);
+  font-size: 16px;
+  right: 10%;
+  top: 19px;
+  bottom: 50%;
+  width: 130px;
+  word-wrap: break-word;
+  text-align: right;
+}
+
+#nav .sub-menu-cell-2{
+  width: 250px;
+  right: 5px;
+}
+
+#nav .top-nav:hover .sub-menu-cell-1 {
+  display: table-cell;
+}
+
+#nav .top-nav > a:hover,
+#nav .top-nav > .sub-menu-cell-1:hover + a {
+  background-color: #26272f ;
+}
+
+#nav .sub-menu-cell-1 .sub > a:hover ,
+#nav .sub-menu-cell-1 .sub > a:hover > p {
+  color: #005E9E;
+  background-color: #f7f8fa ;
+}
+
+
+/*----------------------Body---------------------------------------------------------------------*/
+
+body {
+  padding:65px 5px 0px;
+  background-color: rgb(242, 242, 245);
+}
+body a:hover{
+}
+
+/*----------------------Karte----------------------------------------------*/
+
+#karte a:hover {
+  color: rgb(68, 159, 209);
+  text-decoration: underline;
+  transition: ease 0.1s;
+}
+
+#karte {
+  max-width: 1040px;
+  min-width: 640px;
+  margin: 0 auto;
+  overflow: hidden;
+  letter-spacing: -.4em;
+  padding-top:15px;
+  padding-right: 10px;
+}
+
+#karte .top-container {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+#karte .container-most-top {
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom:0;
+}
+
+#edit {
+  display: inline-block;
+  width: calc(100%);
+  height: 24px;
+  text-align: right;
+  padding-top:5px;
+  margin-bottom:4px;
+  padding-right: 10px;
+  vertical-align: top;
+}
+
+#edit label:hover {
+  color: rgb(251, 21, 21);
+  transition: ease 0.1s;
+  cursor: pointer;
+}
+
+#edit label:active {}
+
+.modal-base{
+  width: 100%;
+  height: 100%;
+}
+#title {
+  position: fixed;
+  z-index:3;
+  top:65px;
+  left:0;
+  letter-spacing: -.4em;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px;
+  background-color: rgb(10, 14, 24);
+
+}
+
+#in-title{
+  max-width: 1040px;
+  min-width: 640px;
+  margin: 0 auto;
+}
+
+#title .title-cell {
+  display: inline-block;
+  width:calc(100% - 300px);
+  text-align: center;
+}
+
+#title cite{
+  font-size: 21px;
+  color: rgb(225, 236, 242);
+  font-weight: normal;
+}
+
+#title .icon-cell {
+  float: right;
+  display: inline-block;
+  max-width: 300px;
+  padding-bottom: 3px;
+  padding-right: 90px;
+}
+
+
+#title .icon-cell i {
+  color: rgb(225, 236, 242);
+  font-size: 23px;
+  transition: color 0.3s;
+  margin-top: 5px;
+}
+
+#title .fa-bookmark:hover,
+#review .fa-bookmark:hover  {
+  color: rgb(255, 46, 103);
+  transition: ease 0.3s;
+}
+
+#title .fa-star:hover,
+#review .fa-star:hover  {
+  color: rgb(253, 212, 65);
+  transition: ease 0.3s;
+}
+
+#title .fa-star:hover > var,
+#review .fa-star:hover > var {
+  color: rgb(253, 212, 65);
+  transition: ease 0.3s;
+}
+
+#title .fa-star {
+  margin-left: 60px;
+}
+
+#title .icon-cell var {
+  font-size: 17px;
+  color: rgb(225, 236, 242);
+  margin: 0 2px;
+}
+
+/*--------------MOVIE-INFO-----------------*/
+
+#movie-info {
+  position: relative;
+  width: calc(98% - 300px);
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+}
+
+#karte .youtube {
+  position: relative;
+  width: 100%;
+  padding-top: 59.25%;
+}
+
+#karte .youtube iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 0 1%;
+}
+
+#movie-info .arasuzi {
+  padding: 0 10px 6px;
+  background-color: white;
+}
+
+#movie-info .arasuzi h2{
+  font-weight: normal;
+}
+
+#movie-info h2 {
+  text-align: center;
+  font-size: 16px;
+}
+
+#movie-info p {
+  font-size: 12px;
+}
+
+
+/*------------  OTHER SCORE -----------------*/
+/*--------------TAG-----------------*/
+
+
+#hyoukaten {
+  width: 300px;
+  display: table;
+  position: relative;
+}
+
+#karte .my-thumnail{
+  position: absolute;
+  max-width: 150px;
+  max-height: 100%;
+  vertical-align: middle;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+#hyoukaten > div {
+  width: 150px;
+  height: 200px;
+  display: table-cell;
+  vertical-align: middle;
+  background-color:
+}
+
+#hyoukaten .other-score-container{
+  width: 95%;
+  height: 47%;
+  text-align: center;
+  background-color: white;
+  margin-left: 7px;
+  margin-bottom: 5px;
+}
+
+#hyoukaten .score-big {
+  font-size: 25px;
+
+}
+#hyoukaten .score-small{
+  font-size: 13px;
+}
+
+#hyoukaten p{
+  margin: 7px 7px 5px 8px;
+}
+
+#hyoukaten .left{
+  text-align: left;
+}
+
+#hyoukaten .right{
+  text-align: right;
+}
+
+#hyoukaten .score-big:after {
+  content: "/10";
+  font-size: 10px;
+  color:gray;
+}
+
+
+#karte .right-container {
+  float: right;
+  display: inline-block;
+  max-width: 300px;
+}
+
+#karte .border-bottom-css{
+  width: 290px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px rgb(200, 200, 200) dashed;
+}
+
+#tag {
+  float: right;
+  width: 100%;
+  display: inline-block;
+  right: 0;
+  position: relative;
+  padding: 3px 5px;
+  background-color: white;
+}
+
+#tag dl {
+  width: 100%;
+  position: relative;
+  display: table;
+  margin-top: 5px;
+}
+
+#tag dt {
+  width: 65px;
+  text-align: right;
+  position: relative;
+  display: inline-block;
+  display: table-cell;
+  font-size: 12px;
+}
+
+#tag dd {
+  width: 100%;
+  text-align: left;
+  position: relative;
+  left: 1.1rem;
+  display: table;
+  padding-right: 7px;
+}
+
+#tag dd:before {
+  content: "";
+}
+
+#tag dd a {
+  font-size: 12px;
+}
+
+/*--------------Get Out--------------*/
+#get-out {
+  position: relative;
+  width: calc(98% - 300px);
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 5px 10px 6px;
+}
+
+
+#get-out #out-site,
+#get-out #out-tag{
+  border-bottom: 2px rgb(200, 200, 200) dashed;
+  padding-bottom:5px;
+  padding-top:5px;
+}
+
+#get-out div {
+  position: relative;
+  display: inline-block;
+  min-width:18.5%;
+  margin: 6px 3px 0px;
+  padding:1px 2px;
+  text-align: center;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid rgb(170, 170, 170);
+  border-radius: 3px;
+  cursor: pointer;
+  cursor: hand;
+}
+
+#get-out #out-site var:before,
+#later-list #out-site var:before  {
+  content: "￥"
+}
+
+#get-out #out-tag var:after {
+  content: ")"
+}
+
+#get-out #out-tag var:before {
+  content: "("
+}
+
+#out-site div:hover,
+#out-site div:hover > p,
+#out-site div:hover var {
+  background-color: rgb(242, 242, 245);
+  color: rgb(68, 159, 209);
+  transition: ease 0.2s;
+}
+
+#out-tag div:hover,
+#out-tag div:hover > p,
+#out-tag div:hover var {
+  background-color:  rgb(242, 242, 245);
+  color: rgb(68, 159, 209);
+  transition: ease 0.2s;
+
+}
+
+
+/*--------------Shop--------------*/
+
+#shop {
+  width: calc(98% - 300px);
+  display: table;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 10px 0;
+}
+
+#shop > div{
+  min-width: 45%;
+  max-width: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding:4px 0 1px 0;
+  transition: ease 1s;
+  cursor: pointer;
+  cursor: hand;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+}
+
+
+#shop > div:nth-child(n + 2){
+}
+
+#shop span{
+  font-size: 50px;
+}
+
+#shop .icon-spin{
+  display: table-cell;
+}
+
+#shop .memo-p{
+  display:table-cell;
+  vertical-align: middle;
+  font-size: 15px;
+}
+
+#shop > div:hover .icon-spin {
+  -webkit-animation: spin 5s linear infinite;
+  -moz-animation: spin 5s linear infinite;
+  -ms-animation: spin 5s linear infinite;
+  -o-animation: spin 5s linear infinite;
+  animation: spin 5s linear infinite;
+}
+
+#shop > div:hover .memo-p{
+  color: rgb(68, 159, 209);
+}
+
+#shop > div:hover{
+  transition: 0.2s;
+  background-color:  rgb(242, 242, 245);
+}
+@-webkit-keyframes spin {
+	0% {-webkit-transform: rotate(0deg);}
+	100% {-webkit-transform: rotate(360deg);}
+}
+@-moz-keyframes spin {
+	0% {-moz-transform: rotate(0deg);}
+	100% {-moz-transform: rotate(360deg);}
+}
+@-ms-keyframes spin {
+	0% {-ms-transform: rotate(0deg);}
+	100% {-ms-transform: rotate(360deg);}
+}
+@-o-keyframes spin {
+	0% {-o-transform: rotate(0deg);}
+	100% {-o-transform: rotate(360deg);}
+}
+@keyframes spin {
+	0% {transform: rotate(0deg);}
+	100% {transform: rotate(360deg);}
+}
+
+.shop-title-container{
+  padding: 15px 0px;
+  border-bottom: 1px dashed gray;
+}
+.shop-title{
+  text-align: center;
+  margin-bottom: 1em;
+}
+.cell-left{
+  display: table-cell;
+  width: 25%;
+  text-align: center;
+  vertical-align: middle;
+}
+.cell-center{
+  display: table-cell;
+  width: 40%;
+  vertical-align: middle;
+  padding: 10px 5px 5px 5px;
+}
+
+.cell-right{
+  display: table-cell;
+  width: 20%;
+  vertical-align: middle;
+  text-align: center;
+  padding: 10px 5px 5px 5px;
+}
+
+.table-row{
+  display: table-row;
+  width: 20%;
+}
+.cell-mini{
+  display: table-cell;
+  text-align: right;
+  padding: 5px 10px 5px 10px;
+}
+
+
+/*--------------Review--------------*/
+
+#review {
+  display: block;
+  width:100%;
+  float: left;
+  position: relative;
+  margin: 30px 5px 10px 5px;
+}
+
+#review .sort-container{
+  display:table;
+  width: 400px;
+  box-shadow:0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+  position: relative;
+  margin-bottom: 0px;
+}
+
+#later-list .sort-container{
+  display:table;
+  box-shadow:0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+  position: relative;
+  margin: 0 5px 0 5px;
+}
+
+#later-list li {
+  width: 120px;
+  border-left: 1px solid  rgb(200, 200, 200);
+}
+
+#review .user-mythumnail{
+  margin-right: 10px;
+  float: left;
+}
+#review .user-mythumnail > img{
+  width:55px;
+  border-radius: 55px !important;
+  max-height:55px;
+}
+
+#review li,
+#later-list li {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
+  padding: 3px 0 3px 0;
+  background-color: white;
+  position: relative;
+  z-index:2;
+  cursor: pointer;
+  cursor: hand;
+}
+
+#review nav p,
+#later-list nav p{
+  font-size: 15px;
+}
+
+#review .sort-container li:hover,
+#later-list .sort-container li:hover{
+  transition: 0.1s;
+  background-color: rgb(242, 242, 245);
+}
+
+#review .sort-container li:hover p,
+#later-list .sort-container li:hover p,
+#review .sort-container li:hover span
+#later-list .sort-container li:hover span{
+  transition: 0.3s;
+  color: rgb(68, 159, 209);
+}
+
+#review .int,
+#later-list .int{
+  font-size: 14px;
+}
+
+#review .int:after,
+#later-list .int:after {
+  content: ")"
+}
+
+#review .int:before,
+#later-list .int:before {
+  content: "("
+}
+
+#review .user-post{
+  width: 100%;
+  box-shadow:0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  margin-top: -1px;
+  position: relative;
+}
+
+#review .user-mypost{
+  text-align: left;
+  padding: 20px 40px;
+  margin: 10px 0 30px 0;
+  background-color: white;
+}
+
+#review .main-engagement{
+    float:right;
+}
+#review .main-engagement:before{
+  content: "エンゲージメント指数：";
+  font-size: 13px;
+}
+
+#review .following:before{
+  content: "following";
+  color:rgb(255, 46, 103);
+  font-size: 13px;
+  margin-right: 1em;
+}
+
+#review .user-my-score{
+  border-left: 1px solid gray;
+  font-size: 18px;
+  margin: 0 1em;
+  padding: 0 1em;
+}
+
+#review .content-my-tags{
+  margin: 10px 0 0 0;
+}
+
+#review .content-my-tags li{
+  display: inline-block;
+  margin: 0 3px 3px 0;
+  padding: 0;
+}
+
+#review a:hover,
+#review .content-title:hover{
+  transition: 0.2s;
+  color: rgb(68, 159, 209);
+  text-decoration: underline;
+}
+
+#review .content-my-tags a{
+  display: inline-block;
+  max-width: 160px;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 1em;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #333;
+  font-size: 13px;
+  text-decoration: none;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+#review .content-my-tags a:hover {
+  transition: 0.2s;
+  color: rgb(68, 159, 209);
+  background-color:
+}
+
+#review .user-my-score:after{
+  margin-left: 2px;
+  content: "点";
+  color:gray;
+  font-size: 13px;
+}
+
+#review .content-title{
+  display: inline-block;
+  font-size: 17px;
+}
+
+#review .content-sub-title{
+  display: inline-block;
+  position: relative;
+  font-size: 14px;
+  font-weight:normal;
+  margin-left: 1em;
+}
+
+#review .content-sub-title:before{
+  content: "(原題：";
+}
+
+#review .content-sub-title:after{
+  content: ")";
+}
+
+#review .content-title-container i {
+  font-size: 23px;
+  margin-left: 20px;
+  color: rgb(170, 170, 170);
+}
+
+#review .content-title-container i:hover{
+  cursor: pointer;
+  cursor: hand;
+}
+
+#review .icons {
+  float: right;
+}
+
+#review .my-title{
+  margin-top: 3px;
+  margin-bottom: 10px;
+  padding-left: 0.5em;
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(64, 64, 64);
+  border-left: 4px solid rgb(68, 159, 209);
+}
+
+#review .user-mypost p{
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+#review .rich-text-content{
+  margin-top: 10px;
+}
+
+#review .user-mypost img{
+  display:block;
+  max-height: 400px;
+  max-width: 100%;
+  border-radius: 3px;
+}
+
+#review .user-mypost time{
+  padding-right: 1em;
+  color:gray;
+}
+
+#review .icon-container{
+  display: table;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: -10px;
+}
+
+#review .table-row{
+  display: table-row;
+}
+
+#review .table-cell{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#review .i-icon{
+  transition: 0.5s;
+  min-width: 90px;
+}
+
+#review .icon-good,
+#review .icon-bad,
+#review .icon-comment,
+#review .icon-repeat{
+  font-size:22px;
+  cursor: pointer;
+  cursor: hand;
+}
+
+#review .icon-good:hover,
+#review .icon-bad:hover,
+#review .icon-comment:hover,
+#review .icon-repeat:hover{
+  transition: 0.1s;
+  color: rgb(68, 159, 209);;
+}
+
+
+/*----------------------My-HOME----------------------------------  */
+#my-home {
+  text-align: center;
+  max-width: 1040px;
+  min-width: 640px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding-top:10px;
+}
+
+#my-home .editer-container{
+  display: inline-block;
+  width: 100%;
+}
+
+.hidden_box input {
+  display: none;
+}
+
+.hidden_box .hidden_show {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.1s;
+}
+
+.hidden_box input:checked ~ .hidden_show {
+    padding: 10px 0;
+    height: auto;
+    opacity: 1;
+}
+
+#my-home .edit-button{
+  display: inline-block;
+  border: 1px solid rgb(170, 170, 170);
+  border-radius: 3px;
+  padding: 5px 15px 2px 15px;
+  margin-top: 10px;
+  text-align: center;
+  background-color: white;
+  cursor: pointer;
+  cursor: hand;
+}
+
+#my-home .icon-edit:before{
+  font-size: 26px;
+  vertical-align: middle;
+  margin-right: 3px;
+}
+#my-home .icon-edit{
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+#my-home .edit-button:hover{
+  transition: 0.2s;
+  color:rgb(68, 159, 209);
+  background-color:  rgb(242, 242, 245);
+}
+
+
+#my-home form > p {
+  text-align: center;
+  border:1px rgb(200, 200, 200) solid;
+  padding: 3px 10px;
+  width: 100%;
+}
+
+#my-home #id_text{
+  width: 100%;
+  height: 50%;
+  border-radius: 3px;
+  background-color: white;
+  resize: both;
+}
+
+#my-home .save{
+  display: inline-block;
+  border: 1px solid rgb(170, 170, 170);
+  border-radius: 3px;
+  padding: 3px 6px;
+  text-align: center;
+  background-color: white;
+  cursor: pointer;
+  cursor: hand;
+}
+
+#my-home .save:hover{
+  transition: 0.2s;
+  color:rgb(68, 159, 209);
+  background-color:  rgb(242, 242, 245);
+}
+
+#my-home .post-form input,textarea{
+  padding: 5px 10px 5px 10px;
+}
+
+#my-home #review {
+  margin-top: 5px;
+}
+
+.background-color{
+  position: absolute;
+  width: 100000px;
+  height: 150px;
+  margin-top: -10px;
+  margin-left:-10000px;
+  background-color: rgb(47, 47, 50);
+}
+
+#user-aside{
+  margin: -10px 5px 10px 5px;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  height: 130px;
+  width: 100%;
+  background-color: rgb(47, 47, 50);
+  position: relative;
+}
+
+#user-aside img{
+  width:120px;
+  border-radius: 120px;
+  max-height:300px;
+}
+
+#user-aside .left-table{
+  width: 120px;
+}
+
+#user-aside .center-table{
+  vertical-align: top;
+  text-align: left;
+  padding-left: 20px;
+}
+
+#user-aside .center-table span{
+  color: rgb(225, 236, 242);
+}
+
+#user-aside .center-table .add-follow {
+  margin-left: 3em;
+  font-weight: bold;
+  color: rgb(225, 236, 242);
+  padding: 0 1em;
+  border: 2px solid rgb(0, 193, 153);
+  border-radius: 5px;
+}
+#user-aside .center-table .add-follow:hover{
+  transition: 0.3s;
+  background-color: rgb(0, 193, 153);
+}
+
+#user-aside h1 {
+  color: rgb(225, 236, 242);
+  display: inline-block;
+  font-size: 25px;
+}
+
+#user-aside .right-table h2{
+  color: rgb(242, 214, 114);
+  font-size: 18px;
+}
+
+#user-aside .right-table cite{
+  color: rgb(225, 236, 242);
+  display: block;
+  text-align: center;
+}
+
+#user-aside .center-table .table{
+  width:100%;
+  padding-top:30px;
+}
+
+#user-aside .center-table .table .table-cell {
+  display: table-cell;
+  text-align: center;
+}
+
+#user-aside .center-table .table-cell span:first-child{
+  display: block;
+}
+
+#user-aside .right-table{
+  vertical-align: middle;
+}
+/*----------------------later-list -----------------------*/
+
+#later-list {
+  text-align: center;
+  max-width: 1040px;
+  min-width: 640px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding-top:10px;
+}
+
+#later-list .later-list-container{
+  display: block;
+  width:100%;
+  margin: 3px 5px 0 5px;
+  padding: 10px 40px;
+  background-color: white;
+  text-align: left;
+}
+
+#later-list .item-list{
+  display: table;
+  width: 100%;
+  min-height: 170px;
+  margin-top: 10px;
+  padding-top: 15px;
+  border-top: 1px dashed  rgb(200, 200, 200);
+}
+
+#later-list .left-container{
+  display: table-cell;
+  width: 110px;
+  height: 150px;
+  vertical-align: middle;
+  margin: 0 auto;
+  padding: 0;
+}
+
+#later-list .right-container{
+  display:inline-block;
+  width: 100%;
+  min-height: 150px;
+  margin: 0;
+  padding: 10px;
+  overflow: hidden;
+}
+
+#later-list a{
+  color:rgb(68, 159, 209);
+}
+
+#later-list a:hover{
+  text-decoration: underline;
+}
+
+#later-list .item-sort{
+  margin:1em;
+}
+
+#later-list .item-sort span{
+  margin-left: 1em;
+  padding-right: 1em;
+  border-right: 1px solid rgb(170, 170, 170);
+}
+
+#later-list img {
+  display:inline-block;
+  max-height: 150px;
+  max-width: 110px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+#later-list .content-title a{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#later-list .item-year a {
+  margin-left: 1em;
+  font-size: 16px;
+}
+
+#later-list .item-year a:before {
+  content: "(";
+}
+#later-list .item-year a:after {
+  content: ")";
+}
+
+#later-list .block:first-child {
+  width: 100%;
+}
+
+#later-list .watched{
+  font-size: 15px;
+  border: 1px solid rgb(19, 23, 35);
+  border-radius: 3px;
+  padding: 2px 1em 0 1em;
+  margin-right: 1em;
+}
+
+#later-list .watched:hover,
+#later-list .icon-cross:hover{
+  transition: 0.5s;
+  background-color: rgb(19, 23, 35);
+  color: rgb(225, 236, 242);
+}
+
+#later-list .icon-cross{
+  font-size: 15px;
+  color: rgb(60, 60, 60);
+  border: 1px solid rgb(19, 23, 35);
+  border-radius: 5px;
+  padding:5px;
+
+}
+
+#later-list .menu-container{
+  display: inline-block;
+  float: right;
+  margin-top: 3px;
+}
+
+#later-list .site-name{
+  position: relative;
+  display: inline-block;
+  min-width:10.5%;
+  margin: 6px 3px 0px;
+  padding:1px 2px;
+  text-align: center;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid rgb(170, 170, 170);
+  border-radius: 3px;
+  cursor: pointer;
+  cursor: hand;
+}
+
+#later-list .table {
+  vertical-align: middle;
+}
+
+#later-list .right-container .left-table{
+  vertical-align: middle;
+  text-align: center;
+  background-color:  white;
+  border: 1px solid rgb(170, 170, 170);
+  border-radius: 5px;
+  min-width: 100px;
+  padding-top: 5px;
+}
+
+#later-list .alluser-score{
+  text-align: center;
+  min-width: 100px;
+}
+
+#later-list .right-container .left-table span {
+  display: table-cell;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0 10px;
+  color: rgb(80, 80, 80);
+}
+
+#later-list .following-score{
+  border-right: 1px solid rgb(170, 170, 170);
+}
+
+#later-list .right-container .table span:first-child {
+  font-size: 20px;
+}
+
+#later-list .following-score:after{
+  font-size: 10px;
+  margin: 0px -6px 3px -6px;
+  display: block;
+  content: "フォロー";
+}
+
+#later-list .all-user-score:after{
+  font-size: 10px;
+  margin-top: 2px;
+  display: block;
+  min-width: 30px;
+  content: "平均";
+}
+
+#later-list .right-table {
+  padding-left: 1em;
+}
+
+#later-list .right-table span {
+  padding-right: 5px;
+}
+#later-list .border-right:after{
+  margin-right: 5px;
+  color: rgb(170, 170, 170);
+  content:"/";
+}
+
+#later-list .right-container .right-table > p {
+  font-size: 12px;
+  padding-left:5px;
+}
+
+#later-list #out-site {
+  width: 100%;
+  padding-left: 7px;
+  margin-top: 10px;
+  background-color: rgb(242, 242, 245);
+}
+
+
+#top-page {
+  text-align: center;
+  max-width: 1040px;
+  min-width: 640px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding-top:10px;
+}
+
+
+/*タブ切り替え全体のスタイル*/
+.tabs {
+  position: relative;
+  padding-top: 80px;
+  padding-bottom: 40px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  margin: 0 auto;
+}
+
+/*タブのスタイル*/
+.tab_item {
+  width: 130px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 22px;
+  text-align: center;
+  color: #565656;
+  display: inline-block;
+  text-align: center;
+  font-family: 'HGMaruGothicMPRO';
+  transition: all 0.2s ease;
+}
+
+/*検索ヒット数のスタイル*/
+.result-status{
+  font-size: 20px;
+}
+.result-status:after{
+  content: "件";
+  font-size: 15px;
+  margin-left: 0.5em;
+}
+
+/*タグ検索のスタイル*/
+.tag-search{
+  border-radius: 50px;
+  margin: 1em;
+  padding: 0 1em;
+  height: 30px;
+  width: 25em;
+  border: 1px solid gray;
+}
+
+#top-page .table-caption{
+  width: 100%;
+  display: table-caption;
+  text-align: center;
+}
+
+.tab_content_description{
+  text-align: left;
+  padding-bottom: 1em;
+  border-bottom: 1px dashed rgb(200, 200, 200);
+  width: 100%;
+}
+
+.description_item{
+  width: 130px;
+  font-size: 18px;
+  text-align: center;
+  color: #565656;
+  display: inline-block;
+  font-family: 'HGMaruGothicMPRO';
+  transition: all 0.2s ease;
+  vertical-align: top;
+}
+
+.desc-item{
+  display: table-cell;
+  width: 100%;
+}
+
+.tags{
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  margin: 0.5em 0.5em 0 ;
+  padding: 0 0.5em 0;
+}
+
+.tab_item:hover,
+.description_item:hover {
+opacity: 0.75;
+cursor: pointer;
+}
+.tags:hover{
+  background-color: rgb(250, 233, 163);
+  cursor: pointer;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="tab_item"],
+input[name="content_item"],
+input[name="desc_item"] {
+display: none;
+}
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+display: none;
+padding: 40px 40px 0;
+clear: both;
+overflow: hidden;
+}
+.desc_content{
+  display: none;
+  clear: both;
+  overflow: hidden;
+}
+/*選択されているタブのコンテンツのみを表示*/
+#novel:checked ~ #novel_content,
+#movie:checked ~ #movie_content,
+#comic:checked ~ #comic_content{
+display: block;
+}
+
+#genre:checked ~ #genre_content .desc_content{
+  display: table-cell;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+  position: relative;
+  border-bottom: 3px solid rgb(68, 159, 209);
+}
+
+.desc-item input:checked + .tags {
+  position: relative;
+  border-radius: 2px;
+  background-color: rgb(249, 221, 121);
+}
+
+.tabs:before{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 137px;
+  border-bottom: 0.6px solid rgb(124, 124, 124);
+}
+
+.submit input{
+  background-color: white;
+  border: 3px solid rgb(68, 159, 209);
+  border-radius: 2px;
+  color: rgb(68, 159, 209);
+  font-weight: bold;
+  font-size: 15px;
+  padding: 5px 10px;
+  margin: 2em 0 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit input:hover{
+  transition: all 0.2s ease;
+  background-color: rgb(68, 159, 209);
+  color: white;
+}

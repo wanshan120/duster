@@ -1,0 +1,182 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  text-decoration: none;
+  font-family: 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0;
+  font-style: normal;
+}
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 14px;
+    font-style: normal;
+    vertical-align: baseline;
+    background: transparent;
+    font-weight: normal;
+}
+
+
+/*----------------------nav-----------------------*/
+
+div, li, nav {
+  display: inline-block;
+}
+body {
+  padding:65px 5px 0px;
+  background-color: rgb(242, 242, 245);
+}
+.nav-container {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  height: 65px;
+  padding: 0 0;
+  background-color: #131723;
+  top:0;
+  left:0;
+}
+.top-nav {
+
+}
+.top-nav, .top-nav>a {
+  min-width: 130px;
+  height: 62px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  color: rgb(225, 236, 242);
+  font-size: 14px;
+  transition: color ease 0.2s;
+  background-color: #131723;
+  text-decoration: none !important;
+}
+.top-nav > a > p {
+  color: rgb(68, 159, 209);
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.top-search {
+  width: 100%;
+  height: 65px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0 10px 0 10px;
+}
+.top-search>.search{
+  border-radius: 2px;
+  padding: 0 6px;
+  height: 40px;
+  width: 100%;
+  min-width: 120px;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+
+.sub-menu-cell-1 {
+  position: absolute;
+  margin: 0 0 0 0;
+  display: none;
+  width: 220px;
+  top: 61px;
+  color : black;
+  background-color: white;
+  box-shadow:0px 0px 5px 3px rgba(0, 0, 0, 0.3)
+}
+
+.sub, .sub>a {
+  position: relative;
+  min-width: 100%;
+  height: 60px;
+  display: inline-block;
+  text-align: left;
+  transition: color ease 0.2s;
+  color : black;
+}
+
+.sub>a {
+  padding: 19px 20px 5px 15px;
+  font-size: 15px;
+}
+/*
+.sub>p {
+  position: absolute;
+  display: table-row;
+  font-size: 16px;
+  color : black;
+  right: 5%;
+  top: 19px;
+  bottom: 50%;
+  width: 130px;
+  word-wrap: break-word;
+  text-align: right;
+}
+*/
+
+.sub>a>p {
+  position: absolute;
+  display: table-row;
+  color: rgb(120, 120, 120);
+  font-size: 16px;
+  right: 10%;
+  top: 19px;
+  bottom: 50%;
+  width: 130px;
+  word-wrap: break-word;
+  text-align: right;
+}
+
+.sub-menu-cell-2{
+  width: 250px;
+  right: 5px;
+}
+/*----------------------hover-----------------------*/
+
+.top-nav:hover .sub-menu-cell-1 {
+  display: table-cell;
+}
+
+.nav-container .top-nav > a:hover,
+.nav-container .top-nav > .sub-menu-cell-1:hover + a {
+  background-color: #26272f ;
+}
+
+
+.nav-container .sub-menu-cell-1 .sub > a:hover ,
+.nav-container .sub-menu-cell-1 .sub > a:hover > p{
+  color: #005E9E;
+  background-color: #f7f8fa ;
+  /*border-bottom: 3px solid rgb(251, 21, 21);*/
+}
+
+/*サブメニューのリンクボーダーは2px*/
+/*
+.nav-container .sub-menu-cell-1 .sub > a:hover {
+	border-bottom: 2px solid rgb(251, 21, 21);
+}
+*/
+
+
+/*----------------------body-----------------------*/

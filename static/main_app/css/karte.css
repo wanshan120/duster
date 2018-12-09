@@ -1,0 +1,657 @@
+* {
+  color: rgb(50, 50, 50);
+}
+
+#karte a:hover {
+  color: rgb(68, 159, 209);
+  text-decoration: underline;
+  transition: ease 0.1s;
+}
+
+#karte {
+  max-width: 1040px;
+  min-width: 640px;
+  margin: 0 auto;
+  overflow: hidden;
+  letter-spacing: -.4em;
+  padding-top:15px;
+  padding-right: 10px;
+}
+
+
+/*--------------TOP-CONTAINER-----------------*/
+
+.top-container {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  /*background-color: red;*/
+}
+
+.container-most-top {
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom:0;
+}
+
+#edit {
+  display: inline-block;
+  width: calc(100%);
+  height: 24px;
+  text-align: right;
+  padding-top:5px;
+  margin-bottom:4px;
+  padding-right: 10px;
+  vertical-align: top;
+}
+
+#edit label:hover {
+  color: rgb(251, 21, 21);
+  transition: ease 0.1s;
+  cursor: pointer;
+}
+
+#edit label:active {}
+
+.modal-base{
+  width: 100%;
+  height: 100%;
+}
+#title {
+  position: fixed;
+  z-index:3;
+  top:65px;
+  left:0;
+  letter-spacing: -.4em;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px;
+  background-color: rgb(10, 14, 24);
+
+}
+
+#in-title{
+  max-width: 1040px;
+  min-width: 640px;
+  margin: 0 auto;
+}
+
+#title .title-cell {
+  display: inline-block;
+  width:calc(100% - 300px);
+  text-align: center;
+}
+
+#title cite{
+  font-size: 21px;
+  color: rgb(225, 236, 242);
+}
+
+#title .icon-cell {
+  float: right;
+  display: inline-block;
+  max-width: 300px;
+  padding-bottom: 3px;
+  padding-right: 90px;
+}
+
+
+#title .icon-cell i {
+  color: rgb(225, 236, 242);
+  font-size: 23px;
+  transition: color 0.3s;
+  margin-top: 5px;
+}
+
+#title .fa-bookmark:hover  {
+  color: rgb(255, 46, 103);
+  transition: ease 0.3s;
+}
+
+#title .fa-star:hover  {
+  color: rgb(253, 212, 65);
+  transition: ease 0.3s;
+}
+
+#title .fa-star:hover > var {
+  color: rgb(253, 212, 65);
+  transition: ease 0.3s;
+}
+
+#title .fa-star {
+  margin-left: 60px;
+}
+
+#title .icon-cell var {
+  font-size: 17px;
+  color: rgb(225, 236, 242);
+  margin: 0 2px;
+}
+
+#title a {
+  text-decoration: none !important;
+}
+
+
+/*--------------MOVIE-INFO-----------------*/
+
+#movie-info {
+  position: relative;
+  width: calc(98% - 300px);
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+}
+
+.youtube {
+  position: relative;
+  width: 100%;
+  padding-top: 59.25%;
+}
+
+.youtube iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 0 1%;
+}
+
+#movie-info .arasuzi {
+  padding: 0 10px 6px;
+  background-color: white;
+}
+
+#movie-info h2 {
+  text-align: center;
+  font-size: 16px;
+}
+
+#movie-info p {
+  font-size: 12px;
+}
+
+
+/*------------  OTHER SCORE -----------------*/
+/*--------------TAG-----------------*/
+
+
+#hyoukaten {
+  width: 300px;
+  display: table;
+  position: relative;
+}
+
+.my-thumnail{
+  position: absolute;
+  max-width: 150px;
+  max-height: 100%;
+  vertical-align: middle;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+#hyoukaten > div {
+  width: 150px;
+  height: 200px;
+  display: table-cell;
+  vertical-align: middle;
+  background-color:
+}
+
+#hyoukaten .other-score-container{
+  width: 95%;
+  height: 47%;
+  text-align: center;
+  background-color: white;
+  margin-left: 7px;
+  margin-bottom: 5px;
+}
+
+#hyoukaten .score-big {
+  font-size: 25px;
+
+}
+#hyoukaten .score-small{
+  font-size: 13px;
+}
+
+#hyoukaten p{
+  margin: 7px 7px 5px 8px;
+}
+
+#hyoukaten .left{
+  text-align: left;
+}
+
+#hyoukaten .right{
+  text-align: right;
+}
+
+#hyoukaten .score-big:after {
+  content: "/10";
+  font-size: 10px;
+  color:gray;
+}
+
+
+.right-container {
+  float: right;
+  display: inline-block;
+  max-width: 300px;
+}
+
+.border-bottom-css{
+  width: 290px;
+  padding-bottom: 5px;
+  margin-bottom:-5px;
+  border-bottom: 1px rgb(200, 200, 200) dashed;
+}
+
+#tag {
+  float: right;
+  width: 100%;
+  display: inline-block;
+  right: 0;
+  position: relative;
+  padding: 3px 5px;
+  background-color: white;
+}
+
+#tag dl {
+  width: 100%;
+  position: relative;
+  display: table;
+  margin-top: 5px;
+}
+
+#tag dt {
+  width: 65px;
+  text-align: right;
+  position: relative;
+  display: inline-block;
+  display: table-cell;
+  font-size: 12px;
+}
+
+#tag dd {
+  width: 100%;
+  text-align: left;
+  position: relative;
+  left: 1.1rem;
+  display: table;
+  padding-right: 7px;
+}
+
+#tag dd:before {
+  content: "";
+}
+
+#tag dd a {
+  font-size: 12px;
+}
+
+/*--------------Get Out--------------*/
+#get-out {
+  position: relative;
+  width: calc(98% - 300px);
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 5px 10px 6px;
+}
+
+
+#get-out #out-site,
+#get-out #out-tag{
+  border-bottom: 2px rgb(200, 200, 200) dashed;
+  padding-bottom:5px;
+  padding-top:5px;
+}
+
+#get-out div {
+  position: relative;
+  display: inline-block;
+  min-width:18.5%;
+  margin: 6px 3px 0px;
+  padding:1px 2px;
+  text-align: center;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  cursor: pointer;
+  cursor: hand;
+}
+
+#get-out #out-site var:before {
+  content: "￥"
+}
+
+#get-out #out-tag var:after {
+  content: ")"
+}
+
+#get-out #out-tag var:before {
+  content: "("
+}
+
+#out-site div:hover,
+#out-site div:hover > p,
+#out-site div:hover var {
+  background-color: rgb(242, 242, 245);
+  color: rgb(68, 159, 209);
+  transition: ease 0.2s;
+}
+
+#out-tag div:hover,
+#out-tag div:hover > p,
+#out-tag div:hover var {
+  background-color:  rgb(242, 242, 245);
+  color: rgb(68, 159, 209);
+  transition: ease 0.2s;
+
+}
+
+
+/*--------------Shop--------------*/
+
+#shop {
+  width: calc(98% - 300px);
+  display: table;
+  text-align: center;
+  border-collapse: separate;  /* セルの間隔を空ける */
+  border-spacing: 10px 0;  /* 左右 上下で記述 */
+}
+
+#shop > div{
+  min-width: 45%;
+  max-width: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding:4px 0 1px 0;
+  transition: ease 1s;
+  cursor: pointer;
+  cursor: hand;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+}
+
+
+#shop > div:nth-child(n + 2){
+}
+
+#shop span{
+  font-size: 50px;
+}
+
+#shop .icon-spin{
+  display: table-cell;
+}
+
+#shop .memo-p{
+  display:table-cell;
+  vertical-align: middle;
+  font-size: 15px;
+}
+
+#shop > div:hover .icon-spin {
+  -webkit-animation: spin 5s linear infinite;
+  -moz-animation: spin 5s linear infinite;
+  -ms-animation: spin 5s linear infinite;
+  -o-animation: spin 5s linear infinite;
+  animation: spin 5s linear infinite;
+}
+
+#shop > div:hover .memo-p{
+  color: rgb(68, 159, 209);
+}
+
+#shop > div:hover{
+  transition: 0.2s;
+  background-color:  rgb(242, 242, 245);
+}
+@-webkit-keyframes spin {
+	0% {-webkit-transform: rotate(0deg);}
+	100% {-webkit-transform: rotate(360deg);}
+}
+@-moz-keyframes spin {
+	0% {-moz-transform: rotate(0deg);}
+	100% {-moz-transform: rotate(360deg);}
+}
+@-ms-keyframes spin {
+	0% {-ms-transform: rotate(0deg);}
+	100% {-ms-transform: rotate(360deg);}
+}
+@-o-keyframes spin {
+	0% {-o-transform: rotate(0deg);}
+	100% {-o-transform: rotate(360deg);}
+}
+@keyframes spin {
+	0% {transform: rotate(0deg);}
+	100% {transform: rotate(360deg);}
+}
+
+#shop a {
+  text-decoration: none !important;
+}
+.shop-title-container{
+  padding: 15px 0px;
+  border-bottom: 1px dashed gray;
+}
+.shop-title{
+  text-align: center;
+  margin-bottom: 1em;
+}
+.cell-left{
+  display: table-cell;
+  width: 25%;
+  text-align: center;
+  vertical-align: middle;
+}
+.cell-center{
+  display: table-cell;
+  width: 40%;
+  vertical-align: middle;
+  padding: 10px 5px 5px 5px;
+}
+
+.cell-right{
+  display: table-cell;
+  width: 20%;
+  vertical-align: middle;
+  text-align: center;
+  padding: 10px 5px 5px 5px;
+}
+
+.table-row{
+  display: table-row;
+  width: 20%;
+}
+.cell-mini{
+  display: table-cell;
+  text-align: right;
+  padding: 5px 10px 5px 10px;
+}
+
+
+/*--------------Review--------------*/
+
+#review {
+  display: block;
+  width:100%;
+  float: left;
+  position: relative;
+  margin: 30px 5px 10px 5px;
+}
+
+#review .sort-container{
+  display:table;
+  width: 50%;
+  box-shadow:0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+  position: relative;
+  margin-bottom: 0px;
+}
+
+
+#review li {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
+  padding: 3px 0 3px 0;
+  background-color: white;
+  position: relative;
+  z-index:2;
+  cursor: pointer;
+  cursor: hand;
+}
+
+#review li:not(:last-child) {
+}
+
+#review nav p {
+  font-size: 15px;
+}
+
+#review li:hover{
+  transition: 0.1s;
+  background-color: rgb(242, 242, 245);
+}
+
+#review li:hover p,
+#review li:hover span{
+  transition: 0.3s;
+  color: rgb(68, 159, 209);
+}
+
+#review .int{
+  font-size: 14px;
+}
+
+#review .int:after {
+  content: ")"
+}
+
+#review .int:before {
+  content: "("
+}
+
+#review .user-post{
+  width: 100%;
+  box-shadow:0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  margin-top: -1px;
+  position: relative;
+}
+
+#review .user-mypost{
+  padding: 20px 20px;
+  margin: 10px 0 30px 0;
+  background-color: white;
+}
+
+#review .main-engagement{
+    float:right;
+}
+#review .main-engagement:before{
+  content: "エンゲージメント指数：";
+  font-size: 13px;
+}
+
+#review .user-name a{
+  padding-left: 1em;
+}
+
+
+
+#review .following:before{
+  content: "following";
+  color:rgb(255, 46, 103);
+  font-size: 13px;
+}
+
+#review .user-myscore{
+  border-left: 1px solid gray;
+  font-size: 18px;
+  margin: 0 1em;
+  padding: 0 1em;
+}
+
+#review .user-myscore:after{
+  margin-left: 2px;
+  content: "点";
+  color:gray;
+  font-size: 13px;
+}
+
+#review .user-post h2{
+  margin-top: 3px;
+  margin-bottom: 10px;
+  padding-left: 0.5em;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(64, 64, 64);
+  border-left: 4px solid rgb(68, 159, 209);
+}
+
+#review .user-post p{
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+
+#review .user-post time{
+  padding-right: 1em;
+  color:gray;
+}
+
+#review .icon-container{
+  display: table;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: -10px;
+}
+
+#review .table-row{
+  display: table-row;
+}
+
+#review .table-cell{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#review .i-icon{
+  transition: 0.5s;
+  min-width: 90px;
+}
+
+#review .icon-good,
+#review .icon-bad,
+#review .icon-comment,
+#review .icon-loop{
+  font-size:22px;
+  cursor: pointer;
+  cursor: hand;
+}
+
+#review .icon-good:hover,
+#review .icon-bad:hover,
+#review .icon-comment:hover,
+#review .icon-loop:hover{
+  transition: 0.1s;
+  color: rgb(68, 159, 209);;
+}
