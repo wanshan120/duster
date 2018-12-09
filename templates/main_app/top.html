@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% extends "main_app/base.html" %}
+{% block content %}
+<article id="top-page">
+  <nav class="sort-container">
+    <div class="tabs">
+      <input id="novel" type="radio" name="tab_item">
+      <label class="tab_item" for="novel">小説</label>
+      <input id="movie" type="radio" name="tab_item" checked>
+      <label class="tab_item" for="movie">映画</label>
+      <input id="comic" type="radio" name="tab_item">
+      <label class="tab_item" for="comic">漫画</label>
+      <div class="tab_content" id="novel_content"></div>
+      <div class="tab_content" id="movie_content">
+        <div class="tab_content_description table">
+          <div class="table-caption">
+            <p class="result-status">199,999,999</p>
+          </div>
+          <div class="table-caption">
+            <input type="search" id="tag-search" class="tag-search" placeholder="タグを追加">
+          </div>
+          <input id="genre" type="checkbox" name="content_item">
+          <label class="description_item table-cell" for="genre">Genre</label>
+          <div id="genre_content" class="desc-item table-cell">
+            <input id="love" type="checkbox" name="desc_item">
+            <label class="tags" for="love">ラブストーリー</label>
+            <input id="roman" type="checkbox" name="desc_item">
+            <label class="tags" for="roman">ロマンス</label>
+            <input id="human" type="checkbox" name="desc_item">
+            <label class="tags" for="human">ヒューマンドラマ</label>
+            <input id="war" type="checkbox" name="desc_item">
+            <label class="tags" for="war">戦争</label>
+            <input id="sf" type="checkbox" name="desc_item">
+            <label class="tags" for="sf">SF</label>
+            <div class="desc_content">
+              <div class="">
+                <input id="fantagy" type="checkbox" name="desc_item">
+                <label class="tags" for="fantagy">ファンタジー</label>
+                <input id="holor" type="checkbox" name="desc_item">
+                <label class="tags" for="holor">ホラー</label>
+                <input id="panic" type="checkbox" name="desc_item">
+                <label class="tags" for="panic">パニック</label>
+                <input id="music" type="checkbox" name="desc_item">
+                <label class="tags" for="music">音楽</label>
+                <input id="action" type="checkbox" name="desc_item">
+                <label class="tags" for="action">アクション</label>
+                <input id="comedy" type="checkbox" name="desc_item">
+                <label class="tags" for="comedy">コメディ</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="submit">
+          <input type="submit" value="検索する" name="submit"/>
+        </div>
+      </div>
+      <div class="tab_content" id="comic_content">
+        <div class="tab_content_description">
+          <p class="c-txtsp">漫画の内容がここに入ります</p>
+        </div>
+      </div>
+    </div>
+  </nav>
+</article>
+
+{% endblock %}
