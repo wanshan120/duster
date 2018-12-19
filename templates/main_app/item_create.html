@@ -1,14 +1,61 @@
 <!DOCTYPE html>
 {% extends "main_app/base.html" %}
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    <table>
-        {{ form }}
-    </table>
-    <input type="submit">
+<article id="top-page">
+  <nav class="sort-container">
+    <div class="tabs">
+      <input id="novel" type="radio" name="tab_item">
+      <label class="tab_item" for="novel">小説</label>
+      <input id="movie" type="radio" name="tab_item" checked>
+      <label class="tab_item" for="movie">映画</label>
+      <input id="comic" type="radio" name="tab_item">
+      <label class="tab_item" for="comic">漫画</label>
+      <div class="tab_content" id="novel_content"></div>
+      <div class="tab_content" id="movie_content">
+        <div class="tab_content_description table">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+              <form action="" method="POST">
+                {% for form in form %}
+                  {{ form.label_tag }}
+                  {{ form }}<br>
+                {% endfor %}
+                <a href="javascript:void(0);" onclick="window.open('{% url 'main_app:popup_tag_create' %}','subwin','width=500,height=500');">+</a>
+                <br>
+                <button type="submit">送信</button>
+              </form>
+              <script>
+                function add_tag(name, pk){
+                    var select = document.getElementById('id_tag');
+                    // <option value="pk">選択肢名</option> をつくる
+                    var option = document.createElement('option');
+                    option.setAttribute('value', pk);
+                    option.innerHTML = name;
 
-</form>
+                    // カテゴリの先頭に追加し、選択済みにする
+                    select.add(option,0);
+                    select.options[0].selected= true;
+                  }
+              </script>
+            </table>
+          </form>
+        </div>
+        <div class="submit">
+          <input type="submit" value="検索する" name="submit"/>
+        </div>
+      </div>
+      <div class="tab_content" id="comic_content">
+        <div class="tab_content_description">
+          <p class="c-txtsp">漫画の内容がここに入ります</p>
+        </div>
+      </div>
+    </div>
+  </nav>
+</article>
+
+{% endblock %}
+
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
@@ -16,4 +63,4 @@
     {% endfor %}
 </ul>
 {% endif %}
-{% endblock %}
+

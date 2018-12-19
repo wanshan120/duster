@@ -123,3 +123,5 @@ NOSE_ARGS = [
 ]
 AUTH_USER_MODEL = 'main_app.User'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

@@ -1,0 +1,603 @@
+##########################
+# TagElement initial data
+###########################
+- model: main_app.TagElement
+  pk: 1
+  fields:
+    name: 形態
+- model: main_app.TagElement
+  pk: 2
+  fields:
+    name: ジャンル
+- model: main_app.TagElement
+  pk: 3
+  fields:
+    name: 年代
+- model: main_app.TagElement
+  pk: 4
+  fields:
+    name: 制作国
+- model: main_app.TagElement
+  pk: 5
+  fields:
+    name: 言語
+- model: main_app.TagElement
+  pk: 6
+  fields:
+    name: 日本語対応
+- model: main_app.TagElement
+  pk: 7
+  fields:
+    name: 年齢制限
+- model: main_app.TagElement
+  pk: 8
+  fields:
+    name: 視聴時間
+- model: main_app.TagElement
+  pk: 9
+  fields:
+    name: 公開状況
+- model: main_app.TagElement
+  pk: 10
+  fields:
+    name: 終了予定
+- model: main_app.TagElement
+  pk: 11
+  fields:
+    name: 巻数、話数
+- model: main_app.TagElement
+  pk: 13
+  fields:
+    name: 制作者
+- model: main_app.TagElement
+  pk: 14
+  fields:
+    name: 制作会社
+- model: main_app.TagElement
+  pk: 15
+  fields:
+    name: キャスト
+- model: main_app.TagElement
+  pk: 16
+  fields:
+    name: 原作者
+- model: main_app.TagElement
+  pk: 17
+  fields:
+    name: 受賞
+
+##########################
+# FreeTag initial data
+##########################
+
+# 形態
+- model: main_app.FreeTag
+  pk: 1
+  fields:
+    elements_id: 1
+    name: 小説
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 2
+  fields:
+    elements_id: 1
+    name: 映画
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 3
+  fields:
+    elements_id: 1
+    name: 漫画
+    created_at: 2018-12-17
+
+# ジャンル
+- model: main_app.FreeTag
+  pk: 4
+  fields:
+    elements_id: 2
+    name: アクション
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 5
+  fields:
+    elements_id: 2
+    name: アドベンチャー
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 6
+  fields:
+    elements_id: 2
+    name: アニメーション
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 7
+  fields:
+    elements_id: 2
+    name: バイオグラフィー
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 8
+  fields:
+    elements_id: 2
+    name: コメディー
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 9
+  fields:
+    elements_id: 2
+    name: 犯罪
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 10
+  fields:
+    elements_id: 2
+    name: ドキュメンタリー
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 11
+  fields:
+    elements_id: 2
+    name: ドラマ
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 12
+  fields:
+    elements_id: 2
+    name: ファミリー
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 13
+  fields:
+    elements_id: 2
+    name: ファンタジー
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 14
+  fields:
+    elements_id: 2
+    name: ホラー
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 15
+  fields:
+    elements_id: 2
+    name: 音楽
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 16
+  fields:
+    elements_id: 2
+    name: ミュージカル
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 17
+  fields:
+    elements_id: 2
+    name: ミステリー
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 18
+  fields:
+    elements_id: 2
+    name: ロマンス
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 19
+  fields:
+    elements_id: 2
+    name: SF
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 20
+  fields:
+    elements_id: 2
+    name: 短編
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 21
+  fields:
+    elements_id: 2
+    name: スポーツ
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 22
+  fields:
+    elements_id: 2
+    name: スリラー
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 23
+  fields:
+    elements_id: 2
+    name: 戦争
+    created_at: 2018-12-17
+
+# 年代
+
+- model: main_app.FreeTag
+  pk: 24
+  fields:
+    elements_id: 3
+    name: ~1900
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 25
+  fields:
+    elements_id: 3
+    name: 1900
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 26
+  fields:
+    elements_id: 3
+    name: 1910
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 27
+  fields:
+    elements_id: 3
+    name: 1920
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 28
+  fields:
+    elements_id: 3
+    name: 1930
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 29
+  fields:
+    elements_id: 3
+    name: 1940
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 30
+  fields:
+    elements_id: 3
+    name: 1950
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 31
+  fields:
+    elements_id: 3
+    name: 1960
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 32
+  fields:
+    elements_id: 3
+    name: 1970
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 33
+  fields:
+    elements_id: 3
+    name: 1980
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 34
+  fields:
+    elements_id: 3
+    name: 1990
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 35
+  fields:
+    elements_id: 3
+    name: 2000
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 36
+  fields:
+    elements_id: 3
+    name: 2010
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 37
+  fields:
+    elements_id: 3
+    name: 2020
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 38
+  fields:
+    elements_id: 3
+    name: 2030
+    created_at: 2018-12-17
+
+# 制作国
+- model: main_app.FreeTag
+  pk: 39
+  fields:
+    elements_id: 4
+    name: 日本
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 40
+  fields:
+    elements_id: 4
+    name: アメリカ
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 41
+  fields:
+    elements_id: 4
+    name: イギリス
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 42
+  fields:
+    elements_id: 4
+    name: 韓国
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 43
+  fields:
+    elements_id: 4
+    name: フランス
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 44
+  fields:
+    elements_id: 4
+    name: インド
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 45
+  fields:
+    elements_id: 4
+    name: ブラジル
+    created_at: 2018-12-17
+
+
+# 言語
+- model: main_app.FreeTag
+  pk: 46
+  fields:
+    elements_id: 5
+    name: 日本語
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 47
+  fields:
+    elements_id: 5
+    name: 英語
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 48
+  fields:
+    elements_id: 5
+    name: 韓国語
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 49
+  fields:
+    elements_id: 5
+    name: フランス語
+    created_at: 2018-12-17
+
+# 日本語対応
+- model: main_app.FreeTag
+  pk: 50
+  fields:
+    elements_id: 6
+    name: 日本語（吹き替え）
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 51
+  fields:
+    elements_id: 6
+    name: 日本語（字幕）
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 52
+  fields:
+    elements_id: 6
+    name: 日本語（字幕、吹き替え）
+    created_at: 2018-12-17
+
+# 年齢制限
+- model: main_app.FreeTag
+  pk: 53
+  fields:
+    elements_id: 7
+    name: G
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 54
+  fields:
+    elements_id: 7
+    name: PG
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 55
+  fields:
+    elements_id: 7
+    name: PG12
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 56
+  fields:
+    elements_id: 7
+    name: PG13
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 57
+  fields:
+    elements_id: 7
+    name: R15+
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 58
+  fields:
+    elements_id: 7
+    name: R
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 59
+  fields:
+    elements_id: 7
+    name: NC-17
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 60
+  fields:
+    elements_id: 7
+    name: R18+
+    created_at: 2018-12-17
+
+# 視聴時間
+- model: main_app.FreeTag
+  pk: 61
+  fields:
+    elements_id: 8
+    name: ~10分
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 62
+  fields:
+    elements_id: 8
+    name: 10~30分
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 63
+  fields:
+    elements_id: 8
+    name: 31~60分
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 64
+  fields:
+    elements_id: 8
+    name: 61~90分
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 65
+  fields:
+    elements_id: 8
+    name: 91~120分
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 66
+  fields:
+    elements_id: 8
+    name: 121~150分
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 67
+  fields:
+    elements_id: 8
+    name: 151~180分
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 68
+  fields:
+    elements_id: 8
+    name: 181分~
+    created_at: 2018-12-17
+
+# 公開状況
+- model: main_app.FreeTag
+  pk: 69
+  fields:
+    elements_id: 9
+    name: 公開中
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 70
+  fields:
+    elements_id: 9
+    name: 公開終了
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 71
+  fields:
+    elements_id: 9
+    name: 制作中
+    created_at: 2018-12-17
+
+# 終了予定
+- model: main_app.FreeTag
+  pk: 73
+  fields:
+    elements_id: 10
+    name: 2020年
+    created_at: 2018-12-17
+
+# 巻数
+- model: main_app.FreeTag
+  pk: 74
+  fields:
+    elements_id: 11
+    name: 1
+    created_at: 2018-12-17
+
+# 制作者
+- model: main_app.FreeTag
+  pk: 75
+  fields:
+    elements_id: 13
+    name: 宮崎駿
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 76
+  fields:
+    elements_id: 13
+    name: スティーヴン・スピルバーグ
+    created_at: 2018-12-17
+
+# 制作会社
+- model: main_app.FreeTag
+  pk: 77
+  fields:
+    elements_id: 14
+    name: ソニー
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 78
+  fields:
+    elements_id: 14
+    name: ディズニー
+    created_at: 2018-12-17
+
+# キャスト
+- model: main_app.FreeTag
+  pk: 79
+  fields:
+    elements_id: 15
+    name: エマ・ワトソン
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 80
+  fields:
+    elements_id: 15
+    name: 反町隆史
+    created_at: 2018-12-17
+
+# 原作者
+- model: main_app.FreeTag
+  pk: 81
+  fields:
+    elements_id: 16
+    name: 手塚治
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 82
+  fields:
+    elements_id: 16
+    name: ヤマザキ　ケント
+    created_at: 2018-12-17
+
+# 受賞
+- model: main_app.FreeTag
+  pk: 83
+  fields:
+    elements_id: 17
+    name: アカデミー賞
+    created_at: 2018-12-17
+- model: main_app.FreeTag
+  pk: 84
+  fields:
+    elements_id: 17
+    name: ゴールデングローブ賞
+    created_at: 2018-12-17

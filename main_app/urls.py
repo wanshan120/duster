@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'main_app'
 
@@ -30,4 +32,20 @@ urlpatterns = [
          name='password_reset_complete'),
     path('item/create/',
          views.ItemCreate.as_view(), name='item_create'),
+    path('item/detail/<int:pk>',
+         views.ItemDetail.as_view(), name='item_detail'),
+    path('item/update/<int:pk>',
+         views.ItemUpdate.as_view(), name='item_update'),
+    path('item/delete/<int:pk>',
+         views.ItemDelete.as_view(), name='item_delete'),
+    path('tag/create/',
+         views.PopupTagCreate.as_view(), name='popup_tag_create'),
+    path('tag/update/<int:pk>',
+         views.TagUpdate.as_view(), name='tag_update'),
+    path('tag/delete/<int:pk>',
+         views.TagDelete.as_view(), name='tag_delete'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

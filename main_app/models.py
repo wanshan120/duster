@@ -20,7 +20,7 @@ Order:
     7: Creater
 
 Initial_data:
-    command: ./manage.py loaddata main_app/fixtures/initial_data.json
+    command: ./manage.py loaddata main_app/fixtures/initial_data.yaml
 
 """
 
@@ -191,7 +191,7 @@ class Creater(models.Model):
     instagram = models.URLField(blank=True)
     official = models.URLField(blank=True)
     other_site = models.URLField(blank=True)
-    thumnail = models.ImageField(upload_to='images/', blank=True)
+    thumnail = models.ImageField(upload_to='images/', blank=True, null=True)
     title = models.ManyToManyField(Item)
     created_at = models.DateTimeField(auto_now_add=True)
 

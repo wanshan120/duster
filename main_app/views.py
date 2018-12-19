@@ -10,14 +10,16 @@ from django.urls import reverse_lazy
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.signing import BadSignature, SignatureExpired, loads, dumps
 from django.http import HttpResponseBadRequest
-from django.shortcuts import redirect, resolve_url
+from django.shortcuts import (
+     redirect, resolve_url, get_object_or_404, reverse, render
+)
 from django.template.loader import get_template
 from django.views import generic
 from .forms import (
     LoginForm, UserCreateForm, UserUpdateForm, MyPasswordChangeForm,
     MyPasswordResetForm, MySetPasswordForm, ItemCreateForm
 )
-from .models import (Item)
+from .models import (Item, FreeTag, TagElement)
 from django.contrib import messages
 
 
@@ -179,12 +181,83 @@ class ItemCreate(generic.CreateView):
     form_class = ItemCreateForm
     template_name = 'main_app/item_create.html'
 
-    def form_valid(self, form):
-        ''' バリデーションを通った時 '''
-        messages.success(self.request, "保存しました")
-        return redirect('main_app:top')
+    def get_success_url(self):
+        return reverse('main_app:item_detail', args=(self.object.id,))
 
     def form_invalid(self, form):
         ''' バリデーションに失敗した時 '''
         messages.warning(self.request, "保存できませんでした")
         return super().form_invalid(form)
+
+
+class ItemDetail(generic.DetailView):
+    model = Item
+    template_name = 'main_app/item_detail.html'
+
+
+class ItemUpdate(generic.UpdateView):
+    model = Item
+    form_class = ItemCreateForm
+    template_name = 'main_app/item_update.html'
+
+    def get_success_url(self):
+        return reverse('main_app:item_detail', args=(self.object.id,))
+
+    def form_invalid(self, form):
+        ''' バリデーションに失敗した時 '''
+        messages.warning(self.request, "保存できませんでした")
+        return super().form_invalid(form)
+
+
+class ItemDelete(generic.DeleteView):
+    model = Item
+    form_class = ItemCreateForm
+    success_url = reverse_lazy('main_app:top')
+
+    def delete(self, request, *args, **kwargs):
+        result = super().delete(request, *args, **kwargs)
+        messages.success(
+            self.request, '「{}」を削除しました'.format(self.object))
+        return result
+
+
+class TagElementCreate(generic.CreateView):
+    """タグエレメントの作成"""
+    model = TagElement
+    fields = '__all__'
+    success_url = reverse_lazy('main_app:top')
+
+
+class TagCreate(generic.CreateView):
+    """タグの作成"""
+    model = FreeTag
+    fields = '__all__'
+    success_url = reverse_lazy('main_app:top')
+
+
+class TagUpdate(generic.UpdateView):
+    """タグの更新"""
+    model = FreeTag
+    fields = '__all__'
+    success_url = reverse_lazy('main_app:top')
+
+
+class TagDelete(generic.DeleteView):
+    """タグの削除"""
+    model = FreeTag
+    fields = '__all__'
+    success_url = reverse_lazy('main_app:top')
+
+
+class PopupTagCreate(TagCreate):
+    """ポップアップでのタグ作成"""
+
+    def form_valid(self, form):
+        tag = form.save()
+        context = {
+            'object_name': str(tag),
+            'object_pk': tag.pk,
+            'function_name': 'add_tag'
+        }
+        return render(self.request, 'main_app/close.html', context)
+

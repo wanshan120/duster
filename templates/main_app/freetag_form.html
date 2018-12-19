@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+{% block content %}
+    <form action="" method="POST">
+        {{ form.as_p }}
+        {%  csrf_token %}
+        <button type="submit">送信</button>
+    </form>
+{% endblock %}

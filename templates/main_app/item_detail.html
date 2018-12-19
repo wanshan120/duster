@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+{% extends "main_app/base.html" %}
+{% block content %}
+<article id="karte">
+  <!---         Title          -->
+  <section id="title">
+    <section id="in-title">
+      <h1 class="title-cell">
+          <cite>{{ item.title }}</cite>
+      </h1>
+      <p class="icon-cell">
+        <a href=""><i class="far fa-bookmark"></i></a>
+        <a href=""><i class="far fa-star"></i></a>
+      </p>
+    </section>
+  </section>
+
+  <!---         Bar          -->
+  <div class="top-container">
+    <div class="container-most-top">
+      <!--
+        <aside id="now-movie">
+          <p>上映中</p>
+        </aside>
+        -->
+      <aside id="edit">
+        <div>
+          <a class="btn btn-default" href="/title/1/edit/"><i class="far fa-edit"></i></a>
+          <!--
+            <input id="ac-1" name="accordion-1" type="checkbox" />
+            <label for="ac-1">編集</label>
+            <article class="ac-small">
+                <p>Some content... </p>
+            </article>
+            -->
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!---         Movie          -->
+  <article id="movie-info">
+
+    <div class="youtube">
+      <iframe width="560" height="315" src="{{ item.movie }}" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <section class="arasuzi">
+      <blockquote cite="#">
+        <h2>あらすじ</h2>
+        <p>{{ item.synopsis }}</p>
+      </blockquote>
+    </section>
+  </article>
+
+  <!---         right-container          -->
+  <div class="right-container">
+    <aside id="hyoukaten">
+      {% if item.thumnail %}
+      <img class="my-thumnail" src="{{ item.thumnail.url }}">
+      {% endif %}
+      <div>
+        <div class="other-score-container">
+          <p class="score-small left">平均</p>
+          <p><var class="score-big">6.3</var></p>
+          <p class="score-small right">12,000,123人</p>
+        </div>
+        <div class="other-score-container">
+          <p class="score-small left">フォロワー</p>
+          <p><var class="score-big">8.5</var></p>
+          <p class="score-small right">3人</p>
+        </div>
+      </div>
+    </aside>
+
+    <!---         Tag          -->
+    <aside id="tag">
+      <div class="border-bottom-css ">
+        <dl>
+          <dt>原題</dt>
+          <dd><a href="">{{ item.title_true }} </a></dd>
+        </dl>
+
+        <dl>
+          <dt>形態</dt>
+          <dd><a href="">映画</a></dd>
+        </dl>
+
+        <dl>
+          <dt>ジャンル</dt>
+
+          <dd>
+            {% for item_tag in item.tag.all %}
+              <a href="">
+                {{ item_tag }}
+              </a>
+            {% endfor %}
+          </dd>
+
+
+        </dl>
+
+        <dl>
+          <dt>年代</dt>
+          <dd><a href="">1992</a></dd>
+        </dl>
+
+        <dl>
+          <dt>制作国</dt>
+          <dd><a href="">フランス</a></dd>
+        </dl>
+
+        <dl>
+          <dt>言語</dt>
+
+          <dd><a href="">フランス語</a></dd>
+
+        </dl>
+
+        <dl>
+          <dt>日本語</dt>
+          <dd><a href="">日本語（字幕）</a></dd>
+        </dl>
+
+        <dl>
+          <dt>制限</dt>
+          <dd><a href="">R18+</a></dd>
+        </dl>
+
+        <dl>
+          <dt>時間</dt>
+          <dd><a href="">120分-</a></dd>
+        </dl>
+      </div>
+
+      <dl>
+        <dt>公開状況</dt>
+        <dd><a href="">終了</a></dd>
+      </dl>
+
+      <dl>
+        <dt>終了予定</dt>
+          <dd><a href="">{{ item.up_status }}</a></dd>
+      </dl>
+
+      <dl>
+        <dt>巻･話数</dt>
+        <dd><a href="">1</a></dd>
+      </dl>
+
+      <dl>
+        <dt>シリーズ</dt>
+        <dd><a href="">{% for title_relate in item.title_relate.all %}{{ title_relate }}</a></dd>{% endfor %}
+      </dl>
+
+      <dl>
+        <dt>制作</dt>
+
+        <dd><a href="">ジャン＝ジャック・アノー</a></dd>
+
+        <dd><a href="">ジェラール・ブラッシュ</a></dd>
+
+      </dl>
+
+      <dl>
+        <dt>キャスト</dt>
+
+        <dd><a href="">ジェーン・マーチ</a></dd>
+
+        <dd><a href="">レオン・カーフェイ</a></dd>
+
+      </dl>
+
+      <dl>
+        <dt></dt>
+
+      </dl>
+
+      <dl>
+        <dt>原作者</dt>
+
+        <dd><a href="">マルグリット・デュラス</a></dd>
+
+      </dl>
+
+      <dl>
+        <dt>制作会社</dt>
+
+        <dd><a href="">クロード・ベリ</a></dd>
+
+      </dl>
+
+      <dl>
+        <dt>受賞</dt>
+
+        <dd><a href="">オスカー</a></dd>
+
+        <dd><a href="">アカデミー賞</a></dd>
+
+      </dl>
+
+    </aside>
+  </div>
+
+  <article id="get-out">
+    <article id="out-site">
+      <div class="site-name">
+        <p>Dtv</p>
+        <p><var>100</var></p>
+      </div>
+
+      <div class="site-name">
+        <p>Hulu</p>
+        <p><var>200</var></p>
+      </div>
+
+      <div class="site-name">
+        <p>Netflix</p>
+        <p><var>300</var></p>
+      </div>
+
+      <div class="site-name">
+        <p>amazon video</p>
+        <p><var>0</var></p>
+      </div>
+
+      <div class="site-name">
+        <p>TSUTAYA</p>
+        <p><var>400</var></p>
+      </div>
+    </article>
+
+    <article id="out-tag">
+      <div>
+        <p>確固たる意志</p><var>231</var>
+      </div>
+      <div>
+        <p>心揺さぶられる</p><var>211</var>
+      </div>
+      <div>
+        <p>ノスタルジー</p><var>5541</var>
+      </div>
+      <div>
+        <p>ミュージカル</p><var>42</var>
+      </div>
+      <div>
+        <p>気分爽快</p><var>657</var>
+      </div>
+      <div>
+        <p>心温まる</p><var>41</var>
+      </div>
+      <div>
+        <p>信念</p><var>5123</var>
+      </div>
+      <div>
+        <p>兄弟・姉妹</p><var>1423</var>
+      </div>
+      <div>
+        <p>前向きになれる</p><var>2523</var>
+      </div>
+      <div>
+        <p>家族との絆</p><var>1</var>
+      </div>
+    </article>
+  </article>
+
+
+  <!--            Shop            -->
+  <aside id="shop">
+    <div href="#modal-1" class="modal-1">
+      <div class="inline-block">
+        <div class="icon-spin">
+          <span class="icon-dvd"></span>
+        </div>
+        <span class="memo-p">DVDの価格比較</span>
+      </div>
+    </div>
+
+    <div id="modal-1" style="display:none;">
+      <div class="shop-title-container">
+
+        <h2 class="shop-title">ロード・オブ・ザ・リング スペシャル・エクステンデッド・エディション トリロジーBOX セット [DVD]</h2>
+
+        <div class="cell-left">
+          <img style="max-width:150px;" src="https://images-na.ssl-images-amazon.com/images/I/61PS1QH2PGL.jpg">
+        </div>
+
+        <div class="cell-center">
+          <p>12枚組。収録されるDVDの内容・仕様は、第1部 - 第3部「スペシャル・エクステンデッド・エディション」と同一。</p>
+        </div>
+
+        <div class="cell-right">
+          <div class="table-row">
+            <p class="cell-mini">Amazon</p>
+            <var class="cell-mini">1000</var>
+          </div>
+          <div class="table-row">
+            <p class="cell-mini">Rakuten</p>
+            <var class="cell-mini">1200</var>
+          </div>
+          <div class="table-row">
+            <p class="cell-mini">TSUTAYA</p>
+            <var class="cell-mini">1100</var>
+          </div>
+        </div>
+      </div>
+
+      <div class="shop-title-container">
+
+        <h2 class="shop-title">ロード・オブ・ザ・リング スペシャル・エクステンデッド・エディション トリロジーBOX セット [DVD]</h2>
+
+        <div class="cell-left">
+          <img style="max-width:150px;" src="https://images-na.ssl-images-amazon.com/images/I/61PS1QH2PGL.jpg">
+        </div>
+
+        <div class="cell-center">
+          <p>12枚組。収録されるDVDの内容・仕様は、第1部 - 第3部「スペシャル・エクステンデッド・エディション」と同一。</p>
+        </div>
+
+        <div class="cell-right">
+          <div class="table-row">
+            <p class="cell-mini">Amazon</p>
+            <var class="cell-mini">1000</var>
+          </div>
+          <div class="table-row">
+            <p class="cell-mini">Rakuten</p>
+            <var class="cell-mini">1200</var>
+          </div>
+          <div class="table-row">
+            <p class="cell-mini">TSUTAYA</p>
+            <var class="cell-mini">1100</var>
+          </div>
+        </div>
+      </div>
+
+      <div class="shop-title-container">
+
+        <h2 class="shop-title">ロード・オブ・ザ・リング スペシャル・エクステンデッド・エディション トリロジーBOX セット [DVD]</h2>
+
+        <div class="cell-left">
+          <img style="max-width:150px;" src="https://images-na.ssl-images-amazon.com/images/I/61PS1QH2PGL.jpg">
+        </div>
+
+        <div class="cell-center">
+          <p>12枚組。収録されるDVDの内容・仕様は、第1部 - 第3部「スペシャル・エクステンデッド・エディション」と同一。</p>
+        </div>
+
+        <div class="cell-right">
+          <div class="table-row">
+            <p class="cell-mini">Amazon</p>
+            <var class="cell-mini">1000</var>
+          </div>
+          <div class="table-row">
+            <p class="cell-mini">Rakuten</p>
+            <var class="cell-mini">1200</var>
+          </div>
+          <div class="table-row">
+            <p class="cell-mini">TSUTAYA</p>
+            <var class="cell-mini">1100</var>
+          </div>
+        </div>
+      </div>
+
+      <div class="shop-title-container">
+
+        <h2 class="shop-title">ロード・オブ・ザ・リング スペシャル・エクステンデッド・エディション トリロジーBOX セット [DVD]</h2>
+
+        <div class="cell-left">
+          <img style="max-width:150px;" src="https://images-na.ssl-images-amazon.com/images/I/61PS1QH2PGL.jpg">
+        </div>
+
+        <div class="cell-center">
+          <p>12枚組。収録されるDVDの内容・仕様は、第1部 - 第3部「スペシャル・エクステンデッド・エディション」と同一。</p>
+        </div>
+
+        <div class="cell-right">
+          <div class="table-row">
+            <p class="cell-mini">Amazon</p>
+            <var class="cell-mini">1000</var>
+          </div>
+          <div class="table-row">
+            <p class="cell-mini">Rakuten</p>
+            <var class="cell-mini">1200</var>
+          </div>
+          <div class="table-row">
+            <p class="cell-mini">TSUTAYA</p>
+            <var class="cell-mini">1100</var>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div href="#modal-2" class="modal-2">
+      <div class="inline-block">
+        <div class="icon-spin">
+          <span class="icon-bd"></span>
+        </div>
+        <span class="memo-p">Blu-rayの価格比較</span>
+      </div>
+    </div>
+
+    <div id="modal-2" style="display:none;">
+    	<p>これはサンプルです。</p>
+    </div>
+    {% load static %}
+    <script src="{% static 'main_app/js/jquery-3.2.1.js' %}" type="text/javascript"></script>
+    <script src="{% static 'main_app/js/jquery-ui-1.12.1.js' %}" type="text/javascript"></script>
+    <script src="{% static 'main_app/js/modaal.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'main_app/js/modal.js' %}" type="text/javascript"></script>
+
+    <script>
+    $('.modal-1').modaal({
+    	animation_speed: '500', 	// アニメーションのスピードをミリ秒単位で指定
+    	background: 'black',	// 背景の色を白に変更
+    	overlay_opacity: '0.9',	// 背景のオーバーレイの透明度を変更
+    	loading_content: 'Now Loading, Please Wait.'	// 読み込み時のテキスト表示
+    });
+
+    $('.modal-2').modaal({
+    	animation_speed: '500', 	// アニメーションのスピードをミリ秒単位で指定
+    	background: 'black',	// 背景の色を白に変更
+    	overlay_opacity: '0.9',	// 背景のオーバーレイの透明度を変更
+    	loading_content: 'Now Loading, Please Wait.'	// 読み込み時のテキスト表示
+    });
+    </script>
+  </aside>
+
+  <article id="review">
+    <nav class="sort-container">
+      <li>
+        <p>すべて</p>
+      <li>
+        <p>レビュー</p>
+        <span class="int">3423</span>
+      <li>
+        <p>イベント</p>
+        <span class="int">31</span>
+      <li>
+        <p>アイテム</p>
+        <span class="int">12</span>
+    </nav>
+
+    <div class="user-post">
+      <section class="user-mypost">
+        <time>2018/4/28</time>
+        <span class="choice">レビュー</span>
+        <span class="main-engagement">87</span>
+        <h2 class="my-title">あまりにも感情移入したのか観賞後、自分が失恋したみたいな切なさとやるせなさが残りました</h2>
+        <span class="user-name following"><a href="#">もこもこひつじ</a></span>
+        <span class="user-my-score">9.0</span>
+        <p>十年に一度のペースで見たら自分の成長が計れること間違いなし。<br>
+          様々な年代の人に観賞してもらいたいです。あまりにも感情移入したのか観賞後、自分が失恋したみたいな切なさとやるせなさが残りました。<br><br>
+          昔、好きだった映画を大人になってから見たら案外くだらなかった、という映画は結構あります。<br>
+          ジブリ映画「耳をすませば」を見て、何も感じなくなったときのあの寂しさがいまだに忘れられません。<br>
+          それも僕の場合、かなり早くその時期が来たのでまだ自分は若いのになんでだろう、という重い喪失感に苦しみました。<br><br>
+          しかしその一方で昔なんとも思わなかった映画が傑作だったことに気づく、なんてことが自分に起こるなんてちょっと信じられないですね。<br>
+          駄作はいつ見ても駄作だと思っていたんで。
+        </p>
+        <div class="icon-container">
+          <div class="table-row">
+            <div class="i-icon table-cell">
+              <span class="icon-good"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+
+            <div class="i-icon table-cell">
+              <span class="icon-bad"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+
+            <div class="i-icon table-cell">
+              <span class="icon-comment"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+
+            <div class="i-icon table-cell">
+              <span class="icon-repeat"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="user-mypost">
+        <time>2018/4/28</time>
+        <span class="choice">レビュー</span>
+        <span class="main-engagement">87</span>
+        <h2 class="my-title" >あまりにも感情移入したのか観賞後、自分が失恋したみたいな切なさとやるせなさが残りました</h2>
+        <span class="user-name following"><a href="#">もこもこひつじ</a></span>
+        <span class="user-my-score">9.0</span>
+        <p>十年に一度のペースで見たら自分の成長が計れること間違いなし。<br>
+          様々な年代の人に観賞してもらいたいです。あまりにも感情移入したのか観賞後、自分が失恋したみたいな切なさとやるせなさが残りました。<br><br>
+          昔、好きだった映画を大人になってから見たら案外くだらなかった、という映画は結構あります。<br>
+          ジブリ映画「耳をすませば」を見て、何も感じなくなったときのあの寂しさがいまだに忘れられません。<br>
+          それも僕の場合、かなり早くその時期が来たのでまだ自分は若いのになんでだろう、という重い喪失感に苦しみました。<br><br>
+          しかしその一方で昔なんとも思わなかった映画が傑作だったことに気づく、なんてことが自分に起こるなんてちょっと信じられないですね。<br>
+          駄作はいつ見ても駄作だと思っていたんで。<br>
+          十年に一度のペースで見たら自分の成長が計れること間違いなし。<br>
+          様々な年代の人に観賞してもらいたいです。あまりにも感情移入したのか観賞後、自分が失恋したみたいな切なさとやるせなさが残りました。<br><br>
+          昔、好きだった映画を大人になってから見たら案外くだらなかった、という映画は結構あります。<br>
+          ジブリ映画「耳をすませば」を見て、何も感じなくなったときのあの寂しさがいまだに忘れられません。<br>
+          それも僕の場合、かなり早くその時期が来たのでまだ自分は若いのになんでだろう、という重い喪失感に苦しみました。<br><br>
+          しかしその一方で昔なんとも思わなかった映画が傑作だったことに気づく、なんてことが自分に起こるなんてちょっと信じられないですね。<br>
+          駄作はいつ見ても駄作だと思っていたんで。<br>
+          様々な年代の人に観賞してもらいたいです。あまりにも感情移入したのか観賞後、自分が失恋したみたいな切なさとやるせなさが残りました。<br><br>
+          昔、好きだった映画を大人になってから見たら案外くだらなかった、という映画は結構あります。<br>
+          ジブリ映画「耳をすませば」を見て、何も感じなくなったときのあの寂しさがいまだに忘れられません。<br>
+          それも僕の場合、かなり早くその時期が来たのでまだ自分は若いのになんでだろう、という重い喪失感に苦しみました。<br><br>
+          しかしその一方で昔なんとも思わなかった映画が傑作だったことに気づく、なんてことが自分に起こるなんてちょっと信じられないですね。<br>
+          駄作はいつ見ても駄作だと思っていたんで。<br>
+          様々な年代の人に観賞してもらいたいです。あまりにも感情移入したのか観賞後、自分が失恋したみたいな切なさとやるせなさが残りました。<br><br>
+          昔、好きだった映画を大人になってから見たら案外くだらなかった、という映画は結構あります。<br>
+          ジブリ映画「耳をすませば」を見て、何も感じなくなったときのあの寂しさがいまだに忘れられません。<br>
+          それも僕の場合、かなり早くその時期が来たのでまだ自分は若いのになんでだろう、という重い喪失感に苦しみました。<br><br>
+          しかしその一方で昔なんとも思わなかった映画が傑作だったことに気づく、なんてことが自分に起こるなんてちょっと信じられないですね。<br>
+          駄作はいつ見ても駄作だと思っていたんで。<br>
+        </p>
+        <div class="icon-container">
+          <div class="table-row">
+            <div class="i-icon table-cell">
+              <span class="icon-good"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+
+            <div class="i-icon table-cell">
+              <span class="icon-bad"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+
+            <div class="i-icon table-cell">
+              <span class="icon-comment"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+
+            <div class="i-icon table-cell">
+              <span class="icon-repeat"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="user-mypost">
+        <time>2018/4/28</time>
+        <span class="choice">レビュー</span>
+        <span class="main-engagement">87</span>
+        <h2 class="my-title">あまりにも感情移入したのか観賞後、自分が失恋したみたいな切なさとやるせなさが残りました</h2>
+        <span class="user-name"><a href="#">もこもこひつじ</a></span>
+        <span class="user-my-score">9.0</span>
+        <p>十年に一度のペースで見たら自分の成長が計れること間違いなし。<br>
+          様々な年代の人に観賞してもらいたいです。あまりにも感情移入したのか観賞後、自分が失恋したみたいな切なさとやるせなさが残りました。<br><br>
+          昔、好きだった映画を大人になってから見たら案外くだらなかった、という映画は結構あります。<br>
+          ジブリ映画「耳をすませば」を見て、何も感じなくなったときのあの寂しさがいまだに忘れられません。<br>
+          それも僕の場合、かなり早くその時期が来たのでまだ自分は若いのになんでだろう、という重い喪失感に苦しみました。<br><br>
+          しかしその一方で昔なんとも思わなかった映画が傑作だったことに気づく、なんてことが自分に起こるなんてちょっと信じられないですね。<br>
+          駄作はいつ見ても駄作だと思っていたんで。
+        </p>
+        <div class="icon-container">
+          <div class="table-row">
+            <div class="i-icon table-cell">
+              <span class="icon-good"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+
+            <div class="i-icon table-cell">
+              <span class="icon-bad"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+
+            <div class="i-icon table-cell">
+              <span class="icon-comment"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+
+            <div class="i-icon table-cell">
+              <span class="icon-repeat"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="user-mypost">
+        <time>2018/4/28</time>
+        <span class="choice">レビュー</span>
+        <span class="main-engagement">87</span>
+        <h2 class="my-title">あまりにも感情移入したのか観賞後、自分が失恋したみたいな切なさとやるせなさが残りました</h2>
+        <span class="user-name"><a href="#">もこもこひつじ</a></span>
+        <span class="user-my-score">9.0</span>
+        <p>十年に一度のペースで見たら自分の成長が計れること間違いなし。<br>
+          様々な年代の人に観賞してもらいたいです。あまりにも感情移入したのか観賞後、自分が失恋したみたいな切なさとやるせなさが残りました。<br><br>
+          昔、好きだった映画を大人になってから見たら案外くだらなかった、という映画は結構あります。<br>
+          ジブリ映画「耳をすませば」を見て、何も感じなくなったときのあの寂しさがいまだに忘れられません。<br>
+          それも僕の場合、かなり早くその時期が来たのでまだ自分は若いのになんでだろう、という重い喪失感に苦しみました。<br><br>
+          しかしその一方で昔なんとも思わなかった映画が傑作だったことに気づく、なんてことが自分に起こるなんてちょっと信じられないですね。<br>
+          駄作はいつ見ても駄作だと思っていたんで。
+        </p>
+        <div class="icon-container">
+          <div class="table-row">
+            <div class="i-icon table-cell">
+              <span class="icon-good"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+
+            <div class="i-icon table-cell">
+              <span class="icon-bad"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+
+            <div class="i-icon table-cell">
+              <span class="icon-comment"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+
+            <div class="i-icon table-cell">
+              <span class="icon-repeat"></span>
+              <span><a href="#">1131</a></span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </article>
+</article> <!-- no touch -->
+{% endblock %}
