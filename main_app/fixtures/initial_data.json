@@ -1,9 +1,0 @@
-[
-  {
-    "model": "main_app.TagElement",
-    "pk": 1,
-    "fields": {
-      "name": "ジャンル"
-    }
-  }
-]
