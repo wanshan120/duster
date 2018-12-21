@@ -1,6 +1,6 @@
 ##########################
 # TagElement initial data !
-# Akihisa
+# Master
 ###########################
 - model: main_app.TagElement
   pk: 1
