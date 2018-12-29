@@ -197,3 +197,41 @@ class Creater(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Follow(models.Model):
+    from_user = models.ForeignKey(
+        User, related_name="from_user", on_delete=models.CASCADE)
+    follow = models.ManyToManyField(User, related_name="follow")
+    follower = models.ManyToManyField(User, related_name="followwe")
+
+    def __str__(self):
+        return self.from_user
+
+
+class Review(models.Model):
+    SCORE = (
+        (0, '未評価'),
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+        (6, '6'),
+        (7, '7'),
+        (8, '8'),
+        (9, '9'),
+        (10, '10'),
+    )
+    head = models.CharField(max_length=40)
+    title = models.ForeignKey(
+        Item, related_name="title", on_delete=models.SET_NULL, null=True)
+    score = models.CharField(max_length=2, choices=SCORE)
+    tag = models.ManyToManyField(FreeTag, blank=True)
+    movie = models.URLField(blank=True)
+    thumnail = models.ImageField(upload_to='images/', blank=True)
+    synopsis = models.TextField(blank=True, max_length=400)
+    upadate_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.head

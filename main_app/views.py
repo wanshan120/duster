@@ -19,8 +19,9 @@ from .forms import (
     LoginForm, UserCreateForm, UserUpdateForm, MyPasswordChangeForm,
     MyPasswordResetForm, MySetPasswordForm, ItemCreateForm
 )
-from .models import (Item, FreeTag, TagElement)
+from .models import (Item, FreeTag, TagElement, Follow)
 from django.contrib import messages
+from django.db.models import Avg
 
 
 User = get_user_model()
@@ -194,6 +195,13 @@ class ItemDetail(generic.DetailView):
     model = Item
     template_name = 'main_app/item_detail.html'
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet
+        context['view_count'] = Item.objects.count()
+        return context
+
 
 class ItemUpdate(generic.UpdateView):
     model = Item
@@ -261,3 +269,16 @@ class PopupTagCreate(TagCreate):
         }
         return render(self.request, 'main_app/close.html', context)
 
+
+class FollowCreate(generic.CreateView):
+    """フォローする"""
+    model = Follow
+    fields = '__all__'
+    success_url = reverse_lazy('main_app:top')
+
+
+class FollowDelete(generic.DeleteView):
+    """フォローしない"""
+    model = Follow
+    fields = '__all__'
+    success_url = reverse_lazy('main_app:top')

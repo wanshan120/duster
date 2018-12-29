@@ -44,6 +44,10 @@ urlpatterns = [
          views.TagUpdate.as_view(), name='tag_update'),
     path('tag/delete/<int:pk>',
          views.TagDelete.as_view(), name='tag_delete'),
+    path('follow/create/<int:pk>',
+         views.FollowCreate.as_view(), name='follow_create'),
+    path('follow/delete/<int:pk>',
+         views.FollowDelete.as_view(), name='follow_delete'),
 ]
 
 if settings.DEBUG:
