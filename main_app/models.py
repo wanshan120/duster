@@ -225,7 +225,7 @@ class Review(models.Model):
     )
     head = models.CharField(max_length=40)
     title = models.ForeignKey(
-        Item, related_name="title", on_delete=models.SET_NULL, null=True)
+        Item, on_delete=models.SET_NULL, null=True)
     score = models.CharField(max_length=2, choices=SCORE)
     tag = models.ManyToManyField(FreeTag, blank=True)
     movie = models.URLField(blank=True)

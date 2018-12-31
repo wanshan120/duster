@@ -87,7 +87,7 @@ class ItemCreateForm(forms.ModelForm):
         )
     tag_genre2 = forms.ModelChoiceField(
         label='ジャンル2',
-        queryset=FreeTag.objects.filter(elements__name='ジャンル2'),
+        queryset=FreeTag.objects.filter(elements__name='ジャンル'),
         )
     tag_age = forms.ModelChoiceField(
         label='年代',
@@ -155,3 +155,4 @@ class ItemCreateForm(forms.ModelForm):
                   'thumnail',
                   'synopsis',
                   'up_status')
+

@@ -22,7 +22,8 @@ from .forms import (
 from .models import (Item, FreeTag, TagElement, Follow)
 from django.contrib import messages
 from django.db.models import Avg
-
+import json
+from django.http import HttpResponse
 
 User = get_user_model()
 
@@ -282,3 +283,33 @@ class FollowDelete(generic.DeleteView):
     model = Follow
     fields = '__all__'
     success_url = reverse_lazy('main_app:top')
+
+
+def ajax_title_search(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        title_list = Item.objects.filter(title__icontains=q)[: 6]
+        results = []
+        for item in title_list:
+            if item.thumnail:
+                title_json = {
+                    'value': item.title,
+                    'label': item.title,
+                    'desc':  item.pk,
+                    'icon':  item.thumnail.url,
+                }
+                results.append(title_json)
+            else:
+                title_json = {
+                    'value': item.title,
+                    'label': item.title,
+                    'desc':  item.pk,
+                    'icon':  "",
+                }
+                results.append(title_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)

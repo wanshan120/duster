@@ -48,6 +48,8 @@ urlpatterns = [
          views.FollowCreate.as_view(), name='follow_create'),
     path('follow/delete/<int:pk>',
          views.FollowDelete.as_view(), name='follow_delete'),
+    path('ajax_title_search',
+         views.ajax_title_search, name='ajax_title_search'),
 ]
 
 if settings.DEBUG:
