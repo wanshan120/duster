@@ -4,7 +4,7 @@ from django.contrib.auth.forms import (
     PasswordResetForm, SetPasswordForm
 )
 from django.contrib.auth import get_user_model
-from .models import Item, TagElement, FreeTag
+from .models import Item, TagElement, FreeTag, WatchStatus
 
 User = get_user_model()
 
@@ -156,3 +156,8 @@ class ItemCreateForm(forms.ModelForm):
                   'synopsis',
                   'up_status')
 
+
+class WatchStatusForm(forms.ModelForm):
+    class Meta:
+        model = WatchStatus
+        fields = ('status',)

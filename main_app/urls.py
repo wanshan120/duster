@@ -50,6 +50,8 @@ urlpatterns = [
          views.FollowDelete.as_view(), name='follow_delete'),
     path('ajax_title_search',
          views.ajax_title_search, name='ajax_title_search'),
+    path('ajax_watch_status',
+         views.ajax_title_search, name='ajax_title_search'),
 ]
 
 if settings.DEBUG:

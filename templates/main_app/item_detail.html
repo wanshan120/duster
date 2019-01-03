@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 {% extends "main_app/base.html" %}
 {% block content %}
+{% load static %}
+
 <article id="karte">
   <!---         Title          -->
   <section id="title">
@@ -9,8 +11,38 @@
           <cite>{{ item.title }}</cite>
       </h1>
       <p class="icon-cell">
-        <a href=""><i class="far fa-bookmark"></i></a>
-        <a href=""><i class="far fa-star"></i></a>
+        <form action="" method="POST" id="watchstatus">
+          {{ form.non_field_errors }}
+          <label for="{{ field.id_for_label }}">{{ from.status.label_tag }}</label>
+          {{ form.status }}
+          {{ field.status.errors }}
+          <button type="submit" id="watchstatus_submit" class="btn btn-primary">{{watchstatus}}</button>
+          {% csrf_token %}
+        </form>
+        <script src="{% static 'main_app/js/jquery-3.2.1.js' %}" type="text/javascript"></script>
+        <script src="{% static 'main_app/js/jquery-ui-1.12.1.js' %}" type="text/javascript"></script>
+        <script src="{% static 'main_app/js/modaal.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'main_app/js/modal.js' %}" type="text/javascript"></script>
+        <script>
+        $('#watchstatus').on('submit', e => {
+            // デフォルトのイベントをキャンセルし、ページ遷移しないように!
+            e.preventDefault();
+            var $this = $(this);
+            var $button = $this.find('button[type="submit"]');
+            $.ajax({
+                'url': '{% url "main_app:item_detail" item.id %}',
+                'type': 'POST',
+                'data': {
+                  'csrfmiddlewaretoken': '{{csrf_token}}',
+                  'status': $('#id_status').val(),
+                },
+                'dataType': 'json'
+            }).done( response => {
+                var status_text = $('#id_status option:selected').text();
+                $('#watchstatus_submit').text(status_text).button("refresh");
+            });
+        });
+        </script>
       </p>
     </section>
   </section>

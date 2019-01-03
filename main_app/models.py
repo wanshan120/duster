@@ -200,8 +200,9 @@ class Creater(models.Model):
 
 
 class Follow(models.Model):
-    from_user = models.ForeignKey(
-        User, related_name="from_user", on_delete=models.CASCADE)
+    follow_from_user = models.ForeignKey(
+        User, related_name="follow_from_user",
+        on_delete=models.CASCADE, null=True)
     follow = models.ManyToManyField(User, related_name="follow")
     follower = models.ManyToManyField(User, related_name="followwe")
 
@@ -209,7 +210,7 @@ class Follow(models.Model):
         return self.from_user
 
 
-class Review(models.Model):
+class Score(models.Model):
     SCORE = (
         (0, '未評価'),
         (1, '1'),
@@ -223,15 +224,46 @@ class Review(models.Model):
         (9, '9'),
         (10, '10'),
     )
+    score = models.CharField(max_length=2, choices=SCORE)
+    score_from_user = models.ForeignKey(
+        User, related_name="score_from_user", on_delete=models.CASCADE,
+        null=True)
+    title = models.ForeignKey(
+        Item, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.score
+
+
+class WatchStatus(models.Model):
+    STATUS = (
+        (0, '未視聴'),
+        (1, '後で見る'),
+        (2, '視聴済み'),
+    )
+    watch_from_user = models.ForeignKey(
+        User, related_name="watch_from_user", on_delete=models.CASCADE)
+    title = models.ForeignKey(
+        Item, on_delete=models.SET_NULL, null=True)
+    status = models.IntegerField(max_length=1, choices=STATUS, null=True)
+
+
+class Review(models.Model):
+    review_from_user = models.ForeignKey(
+        User, related_name="review_from_user", on_delete=models.CASCADE,
+        null=True)
     head = models.CharField(max_length=40)
     title = models.ForeignKey(
         Item, on_delete=models.SET_NULL, null=True)
-    score = models.CharField(max_length=2, choices=SCORE)
     tag = models.ManyToManyField(FreeTag, blank=True)
     movie = models.URLField(blank=True)
     thumnail = models.ImageField(upload_to='images/', blank=True)
     synopsis = models.TextField(blank=True, max_length=400)
     upadate_at = models.DateTimeField(auto_now_add=True)
+    liked = models.ManyToManyField(
+        User, related_name="review_liked_user", blank=True)
+    disliked = models.ManyToManyField(
+        User, related_name="review_disliked_user", blank=True)
 
     def __str__(self):
         return self.head

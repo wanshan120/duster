@@ -17,13 +17,18 @@ from django.template.loader import get_template
 from django.views import generic
 from .forms import (
     LoginForm, UserCreateForm, UserUpdateForm, MyPasswordChangeForm,
-    MyPasswordResetForm, MySetPasswordForm, ItemCreateForm
+    MyPasswordResetForm, MySetPasswordForm, ItemCreateForm, WatchStatusForm
 )
-from .models import (Item, FreeTag, TagElement, Follow)
+from .models import (Item, FreeTag, TagElement, Follow, WatchStatus)
 from django.contrib import messages
 from django.db.models import Avg
 import json
 from django.http import HttpResponse
+from django.http import JsonResponse
+from django.views.generic.edit import ModelFormMixin
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 User = get_user_model()
 
@@ -192,8 +197,9 @@ class ItemCreate(generic.CreateView):
         return super().form_invalid(form)
 
 
-class ItemDetail(generic.DetailView):
+class ItemDetail(ModelFormMixin, generic.DetailView):
     model = Item
+    form_class = WatchStatusForm
     template_name = 'main_app/item_detail.html'
 
     def get_context_data(self, **kwargs):
@@ -201,7 +207,43 @@ class ItemDetail(generic.DetailView):
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet
         context['view_count'] = Item.objects.count()
-        return context
+        try:
+            value = WatchStatus.objects.get(
+                watch_from_user=self.request.user,
+                title=self.kwargs['pk'])
+            context['watchstatus'] = value.get_status_display()
+            return context
+        except Exception:
+            context['watchstatus'] = '未視聴'
+            return context
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            # バリデーション
+            post_pk = self.kwargs['pk']
+            item = form.save(commit=False)
+            """item.watch_from_user = request.user
+            item.title = Item.objects.get(id=post_pk)
+            item.status = request.POST.get('status')"""
+            item, created = WatchStatus.objects.update_or_create(
+                watch_from_user=request.user,
+                title=Item.objects.get(id=post_pk),
+                defaults={
+                    'status': request.POST.get('status')}
+            )
+            item.save()
+            return self.form_valid(form, item)
+        else:
+            self.object = self.get_object()
+            return self.form_invalid(form)
+
+    def form_valid(self, form, item):
+        # バリデーションが通ったら実行
+        data = {
+            'status': item.status,
+        }
+        return JsonResponse(data)
 
 
 class ItemUpdate(generic.UpdateView):
@@ -313,3 +355,5 @@ def ajax_title_search(request):
 
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
+
+
