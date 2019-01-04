@@ -15,34 +15,65 @@
           <button type="submit" id="watchstatus_submit" class="btn btn-primary" value="{{statuscode}}">{{watchstatus}}</button>
           {% csrf_token %}
         </form>
+        <form action="" method="POST" id="watchstock">
+          <button type="submit" id="watchstock_submit" class="btn btn-primary" value="{{stockcode}}">{{watchstock}}</button>
+          {% csrf_token %}
+        </form>
         <script src="{% static 'main_app/js/jquery-3.2.1.js' %}" type="text/javascript"></script>
         <script src="{% static 'main_app/js/jquery-ui-1.12.1.js' %}" type="text/javascript"></script>
         <script src="{% static 'main_app/js/modaal.min.js' %}" type="text/javascript"></script>
         <script src="{% static 'main_app/js/modal.js' %}" type="text/javascript"></script>
         <script>
-        $('#watchstatus').on('submit', e => {
+        $('#watchstatus').on('click', e => {
             // デフォルトのイベントをキャンセルし、ページ遷移しないように!
             e.preventDefault();
-            var $this = $(this);
-            var $button = $this.find('button[type="submit"]');
+            var v = document.getElementById("watchstatus_submit").value
+            if (v == 0) {
+              document.getElementById("watchstatus_submit").value=2
+              document.getElementById("watchstatus_submit").innerHTML='視聴済み';
+            } else if (v == 2){
+              document.getElementById("watchstatus_submit").value=0
+              document.getElementById("watchstatus_submit").innerHTML='未視聴';
+            } else {
+              // alert("error")
+            }
             $.ajax({
                 'url': '{% url "main_app:item_detail" item.id %}',
                 'type': 'POST',
                 'data': {
                   'csrfmiddlewaretoken': '{{csrf_token}}',
                   'status': $('#watchstatus_submit').val(),
+                  'stock': $('#watchstock_submit').val(),
                 },
                 'dataType': 'json'
             }).done( response => {
-              if (response.status == 2) {
-                document.getElementById("watchstatus_submit").value=0
-                document.getElementById("watchstatus_submit").innerHTML='視聴済み';
-              } else {
-                document.getElementById("watchstatus_submit").value=2
-                document.getElementById("watchstatus_submit").innerHTML='未視聴';
-              }
-                //var status_text = $('#watchstatus_submit').text();
-                //$('#watchstatus_submit').text(status_text).button("refresh");
+              // alert(response.stock)
+            });
+        });
+        $('#watchstock').on('click', e => {
+            // デフォルトのイベントをキャンセルし、ページ遷移しないように!
+            e.preventDefault();
+            var v = document.getElementById("watchstock_submit").value
+            if (v == 0) {
+              document.getElementById("watchstock_submit").value=2
+              document.getElementById("watchstock_submit").innerHTML='後で見る 解除';
+            } else if (v == 2){
+              document.getElementById("watchstock_submit").value=0
+              document.getElementById("watchstock_submit").innerHTML='後で見るへ';
+            } else {
+              alert("error")
+            }
+            $.ajax({
+                'url': '{% url "main_app:item_detail" item.id %}',
+                'type': 'POST',
+                'data': {
+                  'csrfmiddlewaretoken': '{{csrf_token}}',
+                  'status': $('#watchstatus_submit').val(),
+                  'stock': $('#watchstock_submit').val(),
+                },
+                'dataType': 'json'
+            }).done( response => {
+              // alert(response.stock)
             });
         });
         </script>

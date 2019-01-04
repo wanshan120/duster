@@ -212,17 +212,18 @@ class ItemDetail(ModelFormMixin, generic.DetailView):
             value = WatchStatus.objects.get(
                 watch_from_user=self.request.user,
                 title=self.kwargs['pk'])
-            # 履歴があったら実行
+            # 履歴があったらHTMLへテンプレート出力
             context['watchstatus'] = value.get_status_display()
-            if value.status == 2:
-                context['statuscode'] = 0
-            else:
-                context['statuscode'] = 2
+            context['watchstock'] = value.get_stock_display()
+            context['statuscode'] = value.status
+            context['stockcode'] = value.stock
             return context
         except Exception:
             # 履歴が無い場合
-            context['watchstatus'] = '未視聴'
+            context['watchstatus'] = '未視聴（未登録）'
             context['statuscode'] = 0
+            context['watchstock'] = '後で見るへ（未登録）'
+            context['stockcode'] = 0
             return context
 
     def post(self, request, *args, **kwargs):
@@ -238,7 +239,8 @@ class ItemDetail(ModelFormMixin, generic.DetailView):
                 watch_from_user=request.user,
                 title=Item.objects.get(id=post_pk),
                 defaults={
-                    'status': request.POST.get('status')}
+                    'status': request.POST.get('status'),
+                    'stock': request.POST.get('stock')}
             )
             item.save()
             return self.form_valid(form, item)
@@ -250,6 +252,7 @@ class ItemDetail(ModelFormMixin, generic.DetailView):
         # バリデーションが通ったら実行
         data = {
             'status': item.status,
+            'stock': item.stock,
         }
         return JsonResponse(data)
 

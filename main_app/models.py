@@ -238,14 +238,18 @@ class Score(models.Model):
 class WatchStatus(models.Model):
     STATUS = (
         (0, '未視聴'),
-        (1, '後で見る'),
         (2, '視聴済み'),
+    )
+    STOCK = (
+        (0, '後で見るへ'),
+        (2, '後で見る 解除'),
     )
     watch_from_user = models.ForeignKey(
         User, related_name="watch_from_user", on_delete=models.CASCADE)
     title = models.ForeignKey(
         Item, on_delete=models.SET_NULL, null=True)
     status = models.IntegerField(max_length=1, choices=STATUS, null=True)
+    stock = models.IntegerField(max_length=1, choices=STOCK, null=True)
 
 
 class Review(models.Model):

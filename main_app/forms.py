@@ -160,5 +160,5 @@ class ItemCreateForm(forms.ModelForm):
 class WatchStatusForm(forms.ModelForm):
     class Meta:
         model = WatchStatus
-        fields = ('status',)
+        fields = ('status', 'stock',)
 
