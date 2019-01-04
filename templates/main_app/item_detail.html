@@ -12,11 +12,7 @@
       </h1>
       <p class="icon-cell">
         <form action="" method="POST" id="watchstatus">
-          {{ form.non_field_errors }}
-          <label for="{{ field.id_for_label }}">{{ from.status.label_tag }}</label>
-          {{ form.status }}
-          {{ field.status.errors }}
-          <button type="submit" id="watchstatus_submit" class="btn btn-primary">{{watchstatus}}</button>
+          <button type="submit" id="watchstatus_submit" class="btn btn-primary" value="{{statuscode}}">{{watchstatus}}</button>
           {% csrf_token %}
         </form>
         <script src="{% static 'main_app/js/jquery-3.2.1.js' %}" type="text/javascript"></script>
@@ -34,12 +30,19 @@
                 'type': 'POST',
                 'data': {
                   'csrfmiddlewaretoken': '{{csrf_token}}',
-                  'status': $('#id_status').val(),
+                  'status': $('#watchstatus_submit').val(),
                 },
                 'dataType': 'json'
             }).done( response => {
-                var status_text = $('#id_status option:selected').text();
-                $('#watchstatus_submit').text(status_text).button("refresh");
+              if (response.status == 2) {
+                document.getElementById("watchstatus_submit").value=0
+                document.getElementById("watchstatus_submit").innerHTML='視聴済み';
+              } else {
+                document.getElementById("watchstatus_submit").value=2
+                document.getElementById("watchstatus_submit").innerHTML='未視聴';
+              }
+                //var status_text = $('#watchstatus_submit').text();
+                //$('#watchstatus_submit').text(status_text).button("refresh");
             });
         });
         </script>

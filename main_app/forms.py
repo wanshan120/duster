@@ -161,3 +161,4 @@ class WatchStatusForm(forms.ModelForm):
     class Meta:
         model = WatchStatus
         fields = ('status',)
+

@@ -208,13 +208,21 @@ class ItemDetail(ModelFormMixin, generic.DetailView):
         # Add in a QuerySet
         context['view_count'] = Item.objects.count()
         try:
+            # 履歴があるか検索
             value = WatchStatus.objects.get(
                 watch_from_user=self.request.user,
                 title=self.kwargs['pk'])
+            # 履歴があったら実行
             context['watchstatus'] = value.get_status_display()
+            if value.status == 2:
+                context['statuscode'] = 0
+            else:
+                context['statuscode'] = 2
             return context
         except Exception:
+            # 履歴が無い場合
             context['watchstatus'] = '未視聴'
+            context['statuscode'] = 0
             return context
 
     def post(self, request, *args, **kwargs):
