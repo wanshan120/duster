@@ -288,19 +288,25 @@ body a:hover{
 }
 
 #title .icon-cell {
+
+}
+
+#title .icon-cell form{
   float: right;
   display: inline-block;
   max-width: 300px;
   padding-bottom: 3px;
   padding-right: 90px;
+  background-color: red;
 }
 
 
-#title .icon-cell i {
+#title .icon-cell button {
   color: rgb(225, 236, 242);
   font-size: 23px;
   transition: color 0.3s;
   margin-top: 5px;
+  background-color: red;
 }
 
 #title .fa-bookmark:hover,

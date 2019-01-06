@@ -1,5 +1,4 @@
 from models import (TagElement)
-from django.contrib.auth.models import PermissionsMixin
 
 
 if __name__ == "__main__":
@@ -31,4 +30,3 @@ if __name__ == "__main__":
         name='職業')
     default_tag13, _ = TagElement.objects.get_or_create(
         name='スポーツ')
-

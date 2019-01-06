@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main_app',
+    'auth_app',
     'dal',
     'dal_select2',
 ]
@@ -113,8 +114,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 
-LOGIN_URL = 'main_app:login'
-LOGIN_REDIRECT_URL = 'main_app:top'
+LOGIN_URL = 'auth_app:login'
+LOGIN_REDIRECT_URL = 'auth_app:top'
 # django-nose, coverage configure
 INSTALLED_APPS += ('django_nose',)
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
@@ -123,7 +124,7 @@ NOSE_ARGS = [
     '--cover-html',  # coverage を html で cover/ に出力する
     '--cover-package=view, main_app',  # 対象のapp
 ]
-AUTH_USER_MODEL = 'main_app.User'
+AUTH_USER_MODEL = 'auth_app.User'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

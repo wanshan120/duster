@@ -75,18 +75,18 @@ $(function() {
     <a href="#">admin</a>
     <nav class="sub-menu-cell-1 sub-menu-cell-2">
       <li class="sub">
-        <a href="{% url 'main_app:user_detail' user.pk %}">ユーザ情報</a>
+        <a href="{% url 'auth:user_detail' user.pk %}">ユーザ情報</a>
       </li>
       <li class="sub">
-        <a href="{% url 'main_app:user_update' user.pk %}">ユーザ情報更新</a>
+        <a href="{% url 'auth:user_update' user.pk %}">ユーザ情報更新</a>
       </li>
       <li class="sub">
-        <a href="{% url 'main_app:password_change' %}">パスワード変更</a>
+        <a href="{% url 'auth_app:password_change' %}">パスワード変更</a>
       </li>
       <li class="sub">
         <a href="#">メール<p class="hukidasi">999,999,999</p></a>
       </li>
-      <li class="sub"><a href="{% url 'main_app:logout' %}">ログアウト</a>
+      <li class="sub"><a href="{% url 'auth_app:logout' %}">ログアウト</a>
       </li>
     </nav>
   </li>
@@ -98,7 +98,7 @@ $(function() {
     <input type="search" id="search" class="search" placeholder="検索">
   </li>
   <li class="top-nav">
-    <a href="{% url 'main_app:login' %}">ログイン</a>
+    <a href="{% url 'auth_app:login' %}">ログイン</a>
   </li>
   {% endif %}
 </nav>
