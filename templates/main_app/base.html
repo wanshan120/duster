@@ -75,10 +75,10 @@ $(function() {
     <a href="#">admin</a>
     <nav class="sub-menu-cell-1 sub-menu-cell-2">
       <li class="sub">
-        <a href="{% url 'auth:user_detail' user.pk %}">ユーザ情報</a>
+        <a href="{% url 'auth_app:user_detail' user.pk %}">ユーザ情報</a>
       </li>
       <li class="sub">
-        <a href="{% url 'auth:user_update' user.pk %}">ユーザ情報更新</a>
+        <a href="{% url 'auth_app:user_update' user.pk %}">ユーザ情報更新</a>
       </li>
       <li class="sub">
         <a href="{% url 'auth_app:password_change' %}">パスワード変更</a>
@@ -102,8 +102,8 @@ $(function() {
   </li>
   {% endif %}
 </nav>
-
 <!-- contets -->
+
 <body>
   {% block content %}{% endblock %}
   {% block extrajs %}{% endblock %}

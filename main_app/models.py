@@ -1,7 +1,7 @@
 from django.db import models
 from auth_app.models import User
 
-"""Dusterのモデル定義.
+"""main_appのモデル定義.
 
 Order:
     2: Tag

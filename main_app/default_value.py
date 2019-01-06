@@ -1,4 +1,6 @@
-from models import (TagElement)
+from models import TagElement
+import django
+django.setup()
 
 
 if __name__ == "__main__":

@@ -115,7 +115,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 
 LOGIN_URL = 'auth_app:login'
-LOGIN_REDIRECT_URL = 'auth_app:top'
+LOGIN_REDIRECT_URL = 'main_app:top'
 # django-nose, coverage configure
 INSTALLED_APPS += ('django_nose',)
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
