@@ -1,6 +1,9 @@
 from models import TagElement
-import django
-django.setup()
+""" 使ってない.
+
+使えない。initialdata.yamlを使用する
+
+"""
 
 
 if __name__ == "__main__":

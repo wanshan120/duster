@@ -1,5 +1,5 @@
 from django import forms
-from .models import Item, FreeTag, WatchStatus
+from .models import Item, FreeTag, WatchStatus, Score
 
 
 class ItemCreateForm(forms.ModelForm):
@@ -85,3 +85,8 @@ class WatchStatusForm(forms.ModelForm):
         model = WatchStatus
         fields = ('status', 'stock',)
 
+
+class WatchScoreForm(forms.ModelForm):
+    class Meta:
+        model = Score
+        fields = ('score',)

@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -29,6 +29,12 @@ urlpatterns = [
          views.ajax_title_search, name='ajax_title_search'),
     path('ajax_watch_status',
          views.ajax_title_search, name='ajax_title_search'),
+    # ステータス
+    path('item/detail/<int:pk>/status/', views.update_status, name='ajax_status'),
+    # スコア
+    path('item/detail/<int:pk>/score/', views.update_score, name='ajax_score'),
+    # ストック
+    path('item/detail/<int:pk>/stock/', views.update_stock, name='ajax_stock'),
 ]
 
 if settings.DEBUG:

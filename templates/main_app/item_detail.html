@@ -11,20 +11,24 @@
           <cite>{{ item.title }}</cite>
       </h1>
       <p class="icon-cell">
-        <form action="" method="POST" id="watchstatus">
-          <button type="submit" id="watchstatus_submit" class="btn btn-primary" value="{{statuscode}}">{{watchstatus}}</button>
+        <form action="{% url 'main_app:ajax_status' item.id %}" method="POST" name="wttchstatus">
+          {% url 'main_app:ajax_status' item.id %}
+          <button type="submit" name="status_form" id="watchstatus_submit" class="btn btn-primary" value="{{statuscode}}">{{watchstatus}}</button>
           {% csrf_token %}
         </form>
-        <form action="" method="POST" id="watchstock">
-          <button type="submit" id="watchstock_submit" class="btn btn-primary" value="{{stockcode}}">{{watchstock}}</button>
+        <form action="{% url 'main_app:ajax_stock' item.id %}" method="POST" name="wttchststock">
+          {% url 'main_app:ajax_stock' item.id %}
+          <button type="submit" name="stock_form" id="watchstock_submit" class="btn btn-primary" value="{{stockcode}}">{{watchstock}}</button>
           {% csrf_token %}
         </form>
+
+
         <script src="{% static 'main_app/js/jquery-3.2.1.js' %}" type="text/javascript"></script>
         <script src="{% static 'main_app/js/jquery-ui-1.12.1.js' %}" type="text/javascript"></script>
         <script src="{% static 'main_app/js/modaal.min.js' %}" type="text/javascript"></script>
         <script src="{% static 'main_app/js/modal.js' %}" type="text/javascript"></script>
         <script>
-        $('#watchstatus').on('click', e => {
+        $('#watchstatus_submit').on('click', e => {
             // デフォルトのイベントをキャンセルし、ページ遷移しないように!
             e.preventDefault();
             var v = document.getElementById("watchstatus_submit").value
@@ -38,7 +42,7 @@
               // alert("error")
             }
             $.ajax({
-                'url': '{% url "main_app:item_detail" item.id %}',
+                'url': '{% url "main_app:ajax_status" item.id %}',
                 'type': 'POST',
                 'data': {
                   'csrfmiddlewaretoken': '{{csrf_token}}',
@@ -50,7 +54,7 @@
               // alert(response.stock)
             });
         });
-        $('#watchstock').on('click', e => {
+        $('#watchstock_submit').on('click', e => {
             // デフォルトのイベントをキャンセルし、ページ遷移しないように!
             e.preventDefault();
             var v = document.getElementById("watchstock_submit").value
@@ -64,7 +68,7 @@
               alert("error")
             }
             $.ajax({
-                'url': '{% url "main_app:item_detail" item.id %}',
+                'url': '{% url "main_app:ajax_stock" item.id %}',
                 'type': 'POST',
                 'data': {
                   'csrfmiddlewaretoken': '{{csrf_token}}',
@@ -110,7 +114,10 @@
     <div class="youtube">
       <iframe width="560" height="315" src="{{ item.movie }}" frameborder="0" allowfullscreen></iframe>
     </div>
-
+    <tbody>
+        <!-- グラフ表示 -->
+        <div id="content">{% include 'item_pk_status/status.html' %}</div>
+    </tbody>
     <section class="arasuzi">
       <blockquote cite="#">
         <h2>あらすじ</h2>
