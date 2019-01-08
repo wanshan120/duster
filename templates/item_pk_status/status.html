@@ -1,1 +1,33 @@
-<p>ステータステンプレート</p>
+<form action="{% url 'main_app:ajax_status' item.id %}" method="POST" name="watchstatusform">
+  <button type="submit" name="status_form" id="watchstatus_submit" class="btn btn-primary" value="{{statuscode}}">{{watchstatus}}</button>
+  {% csrf_token %}
+</form>
+
+<script>
+$('#watchstatus_submit').on('click', e => {
+    // デフォルトのイベントをキャンセルし、ページ遷移しないように!
+    e.preventDefault();
+    var v = document.getElementById("watchstatus_submit").value
+    if (v == 0) {
+      document.getElementById("watchstatus_submit").value=2
+      document.getElementById("watchstatus_submit").innerHTML='視聴済み';
+    } else if (v == 2){
+      document.getElementById("watchstatus_submit").value=0
+      document.getElementById("watchstatus_submit").innerHTML='未視聴';
+    } else {
+      alert("error")
+    }
+    $.ajax({
+        'url': '{% url "main_app:ajax_status" item.id %}',
+        'type': 'POST',
+        'data': {
+          'csrfmiddlewaretoken': '{{csrf_token}}',
+          'status': $('#watchstatus_submit').val(),
+          'stock': $('#watchstock_submit').val(),
+        },
+        'dataType': 'json'
+    }).done( response => {
+      // alert(response.stock)
+    });
+});
+</script>

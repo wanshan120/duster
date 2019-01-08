@@ -1,1 +1,33 @@
-<p>スコアテンプレート</p>
+<form action="{% url 'main_app:ajax_stock' item.id %}" method="POST" name="watchstockform">
+  <button type="submit" name="stock_form" id="watchstock_submit" class="btn btn-primary" value="{{stockcode}}">{{watchstock}}</button>
+  {% csrf_token %}
+</form>
+
+<script>
+$('#watchstock_submit').on('click', e => {
+    // デフォルトのイベントをキャンセルし、ページ遷移しないように!
+    e.preventDefault();
+    var v = document.getElementById("watchstock_submit").value
+    if (v == 0) {
+      document.getElementById("watchstock_submit").value=2
+      document.getElementById("watchstock_submit").innerHTML='後で見る 解除';
+    } else if (v == 2){
+      document.getElementById("watchstock_submit").value=0
+      document.getElementById("watchstock_submit").innerHTML='後で見るへ';
+    } else {
+      alert("error")
+    }
+    $.ajax({
+        'url': '{% url "main_app:ajax_stock" item.id %}',
+        'type': 'POST',
+        'data': {
+          'csrfmiddlewaretoken': '{{csrf_token}}',
+          'status': $('#watchstatus_submit').val(),
+          'stock': $('#watchstock_submit').val(),
+        },
+        'dataType': 'json'
+    }).done( response => {
+      // alert(response.stock)
+    });
+});
+</script>

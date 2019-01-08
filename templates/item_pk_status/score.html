@@ -1,1 +1,33 @@
-<p>スコアテンプレート</p>
+<form action="{% url 'main_app:ajax_score' item.id %}" method="POST" name="watchscore" id="id_score_form">
+  <span class="star-rating">
+    <input type="radio" name="rating" value="0" {% if scorecode == 0 %}checked="checked"{% endif %}><i></i>
+    <input type="radio" name="rating" value="1" {% if scorecode == 1 %}checked="checked"{% endif %}><i></i>
+    <input type="radio" name="rating" value="2" {% if scorecode == 2 %}checked="checked"{% endif %}><i></i>
+    <input type="radio" name="rating" value="3" {% if scorecode == 3 %}checked="checked"{% endif %}><i></i>
+    <input type="radio" name="rating" value="4" {% if scorecode == 4 %}checked="checked"{% endif %}><i></i>
+    <input type="radio" name="rating" value="5" {% if scorecode == 5 %}checked="checked"{% endif %}><i></i>
+    <input type="radio" name="rating" value="6" {% if scorecode == 6 %}checked="checked"{% endif %}><i></i>
+    <input type="radio" name="rating" value="7" {% if scorecode == 7 %}checked="checked"{% endif %}><i></i>
+    <input type="radio" name="rating" value="8" {% if scorecode == 8 %}checked="checked"{% endif %}><i></i>
+    <input type="radio" name="rating" value="9" {% if scorecode == 9 %}checked="checked"{% endif %}><i></i>
+    <input type="radio" name="rating" value="10" {% if scorecode == 10 %}checked="checked"{% endif %}><i></i>
+  </span>
+  {% csrf_token %}
+</form>
+<script>
+$('#id_score_form input').change(function(e){
+    // デフォルトのイベントをキャンセルし、ページ遷移しないように!
+    e.preventDefault();
+    $.ajax({
+        'url': '{% url "main_app:ajax_score" item.id %}',
+        'type': 'POST',
+        'data': {
+          'csrfmiddlewaretoken': '{{csrf_token}}',
+          'score': $(this).val(),
+        },
+        'dataType': 'json'
+    }).done( response => {
+      // do something
+    });
+});
+</script>

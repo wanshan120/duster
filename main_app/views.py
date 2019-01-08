@@ -1,13 +1,12 @@
 from django.urls import reverse_lazy
 from django.shortcuts import (reverse, render)
 from django.views import generic
-from .forms import (ItemCreateForm, WatchStatusForm)
+from .forms import (ItemCreateForm, WatchScoreForm)
 from .models import (Item, FreeTag, TagElement, Follow, WatchStatus, Score)
 from django.contrib import messages
 import json
 from django.http import HttpResponse
 from django.http import JsonResponse
-from django.views.generic.edit import ModelFormMixin
 
 
 class Top(generic.TemplateView):
@@ -52,6 +51,17 @@ class ItemDetail(generic.DetailView):
             context['statuscode'] = 0
             context['watchstock'] = '後で見るへ'
             context['stockcode'] = 0
+        try:
+            # 履歴があるか検索
+            value = Score.objects.get(
+                score_from_user=self.request.user,
+                title=self.kwargs['pk'])
+            # 履歴があったらHTMLへテンプレート出力
+            context['scorecode'] = value.score
+
+        except Exception:
+            # 履歴が無い場合
+            context['stockcode'] = 0
         return context
 
 
@@ -91,7 +101,7 @@ update_stock = update_status
 def update_score(request, pk):
     if request.method == "POST":
         item, created = Score.objects.update_or_create(
-            watch_from_user=request.user,
+            score_from_user=request.user,
             title=Item.objects.get(id=pk),
             defaults={
                 'score': request.POST.get('score'),
@@ -100,6 +110,7 @@ def update_score(request, pk):
         data = {
             'score': item.score,
         }
+        print(data)
         return JsonResponse(data)
     else:
         data = 'fail'
