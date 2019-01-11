@@ -57,7 +57,7 @@ $(function() {
         <a href="#">漫画<p class="hukidasi">999,999,999</p></a>
       </li>
     </nav>
-    <a href="#">後で見る<br><p>999,999,999</p></a>
+    <a href="{% url 'main_app:my_stock_list' %}">後で見る<br><p>999,999,999</p></a>
   </li>
   <li class="top-nav">
     <nav class="sub-menu-cell-1">
@@ -66,7 +66,7 @@ $(function() {
       <li class="sub"><a href="#">番組<p class="hukidasi">999,999,999</p></a></li>
       <li class="sub"><a href="#">漫画<p class="hukidasi">999,999,999</p></a></li>
     </nav>
-    <a href="#">視聴履歴<br><p>999,999,999</p></a>
+    <a href="{% url 'main_app:my_watch_list' %}">視聴履歴<br><p>999,999,999</p></a>
   </li>
   <li class="top-search">
     <input type="search" id="search" class="search" placeholder="検索">

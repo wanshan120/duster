@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.shortcuts import (reverse, render)
 from django.views import generic
-from .forms import (ItemCreateForm, WatchScoreForm)
+from .forms import (ItemCreateForm)
 from .models import (Item, FreeTag, TagElement, Follow, WatchStatus, Score)
 from django.contrib import messages
 import json
@@ -20,11 +20,6 @@ class ItemCreate(generic.CreateView):
 
     def get_success_url(self):
         return reverse('main_app:item_detail', args=(self.object.id,))
-
-    def form_invalid(self, form):
-        ''' バリデーションに失敗した時 '''
-        messages.warning(self.request, "保存できませんでした")
-        return super().form_invalid(form)
 
 
 class ItemDetail(generic.DetailView):
@@ -72,7 +67,7 @@ def update_status(request, pk):
         フォーム送信時にformのactionでupdate_statusを呼び出す
         データ保存したらJSON形式で返却（AJAX）
     """
-    if request.method == "POST":
+    if request.method == "AJAX":
         item, created = WatchStatus.objects.update_or_create(
             watch_from_user=request.user,
             title=Item.objects.get(id=pk),
@@ -96,6 +91,39 @@ def update_status(request, pk):
 
 update_stock = update_status
 """ update_statusをupdate_stock用にコピー."""
+
+
+def update_status_list(request, pk):
+    """list用
+    """
+    if request.method == "POST":
+        item, created = WatchStatus.objects.update_or_create(
+            watch_from_user=request.user,
+            title=Item.objects.get(id=pk),
+            # 検索値
+            defaults={
+                'status': request.POST.get('status'),
+                'stock': request.POST.get('stock'),
+                }
+            # 設定
+        )
+        print(item)
+        print(created)
+        for key, value in request.POST.items():
+            print('Key:', key)
+            print('value:', value)
+        data = {
+            'status': item.status,
+            'stock': item.stock,
+        }
+        return JsonResponse(data)
+    else:
+        data = 'fail'
+        mimetype = 'application/json'
+        return HttpResponse(data, mimetype)
+
+
+update_stock_list = update_status_list
 
 
 def update_score(request, pk):
@@ -142,6 +170,32 @@ class ItemDelete(generic.DeleteView):
         messages.success(
             self.request, '「{}」を削除しました'.format(self.object))
         return result
+
+
+class MyWatchList(generic.ListView):
+    model = WatchStatus
+    paginate_by = 10
+    template_name = 'main_app/my_watch_list.html'
+    context_object_name = 'items'
+
+    def get_queryset(self):
+        items = WatchStatus.objects.filter(
+            watch_from_user=self.request.user,
+            status=2).select_related().all()
+        return items
+
+
+class MyStockList(generic.ListView):
+    model = WatchStatus
+    paginate_by = 10
+    template_name = 'main_app/my_stock_list.html'
+    context_object_name = 'my_items'
+
+    def get_queryset(self):
+        item = WatchStatus.objects.filter(
+            watch_from_user=self.request.user,
+            stock=2).select_related().all()
+        return item
 
 
 class TagElementCreate(generic.CreateView):
@@ -227,29 +281,3 @@ def ajax_title_search(request):
 
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
-
-
-""" マイスコア.
-class ScoreCreate(generic.CreateView):
-    model = Score
-    fields = '__all__'
-    success_url = reverse_lazy('main_app:top')
-
-
-class PopupScoreCreate(ScoreCreate):
-
-    def form_valid(self, form):
-        f = form.save()
-        context = {
-            'object_name': str(f),
-            'object_pk': f.pk,
-            'function_name': 'my_score'
-        }
-        return render(self.request, 'main_app/close.html', context)
-
-
-class ScoreUpdate(generic.UpdateView):
-    model = Score
-    fields = '__all__'
-    success_url = reverse_lazy('main_app:top')
-"""

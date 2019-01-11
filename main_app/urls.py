@@ -15,6 +15,10 @@ urlpatterns = [
          views.ItemUpdate.as_view(), name='item_update'),
     path('item/delete/<int:pk>',
          views.ItemDelete.as_view(), name='item_delete'),
+    path('item/my_watch_list/',
+         views.MyWatchList.as_view(), name='my_watch_list'),
+    path('item/my_stock_list/',
+         views.MyStockList.as_view(), name='my_stock_list'),
     path('tag/create/',
          views.PopupTagCreate.as_view(), name='popup_tag_create'),
     path('tag/update/<int:pk>',
@@ -35,6 +39,12 @@ urlpatterns = [
     path('item/detail/<int:pk>/score/', views.update_score, name='ajax_score'),
     # ストック
     path('item/detail/<int:pk>/stock/', views.update_stock, name='ajax_stock'),
+    # ステータス
+    path('item/my_stock_list/<int:pk>/status/', views.update_status_list, name='ajax_status_list'),
+    # スコア
+    path('item/my_stock_list/<int:pk>/score/', views.update_score, name='ajax_score_list'),
+    # ストック
+    path('item/my_stock_list/<int:pk>/stock/', views.update_stock_list, name='ajax_stock_list'),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% extends "main_app/base.html" %}
+{% block content %}
+{% load static %}
+
+<body>
+  <article id="later-list">
+    <nav class="sort-container">
+      <li>
+        <p>すべて</p>
+      <li>
+        <p>映画</p>
+        <span class="int">3423</span>
+      <li>
+        <p>小説</p>
+        <span class="int">31</span>
+      <li>
+        <p>番組</p>
+        <span class="int">12</span>
+      <li>
+        <p>漫画</p>
+        <span class="int">12</span>
+    </nav>
+
+    <div class="later-list-container">
+      <div class="item-sort">
+        <span>並び替え</span>
+        <span><a href="#">追加順</a></span>
+        <span><a href="#">平均スコア順</a></span>
+        <span><a href="#">フォロワースコア順</a></span>
+      </div>
+      {% for post in items %}
+      <section class="item-list">
+        <div class="left-container">
+          {% if post.title.thumnail %}
+            <img class="my-thumnail" src="{{ post.title.thumnail.url }}">
+          {% endif %}
+        </div>
+        <div class="right-container">
+          <div class="block">
+            <span class="content-title"><a href="{% url 'main_app:item_detail' post.title.pk %}">{{ post.title }}</a></span>
+            <span class="item-year"><a href="">1994</a></span>
+            <div class="menu-container">
+              <span class="watched">視聴済</span>
+              <span class="icon-cross"></span>
+            </div>
+          </div>
+          <div class="table">
+            <div class="table-cell left-table">
+              <div class="inline-block">
+                <span class="following-score table-row">9.0</span>
+                <span class="all-user-score table-row">9.0</span>
+              </div>
+            </div>
+            <div class="table-cell right-table">
+              <div class="inline-block">
+                {% for a in post.title.tag.all %}
+                  <span class="item-genre"><a href="">{{ a.name }}</a></span>
+                {% endfor %}
+                <span class="item-genre"><a href="">ヒューマンドラマ</a></span>
+                <i class="border-right"></i>
+                <span class="item-tag"><a href="">確固たる意志</a></span>
+                <span class="item-tag"><a href="">心揺さぶられる</a></span>
+                <span class="item-tag"><a href="">ノスタルジー</a></span>
+              </div>
+              <div class="table-row">
+                <p class="short-overview">
+                  {{ post.title.synopsis }}
+                <p>
+              </div>
+            </div>
+          </div>
+          <article id="out-site">
+            <div class="site-name">
+              <p>Dtv</p>
+              <p><var>100</var></p>
+            </div>
+            <div class="site-name">
+              <p>Hulu</p>
+              <p><var>200</var></p>
+            </div>
+            <div class="site-name">
+              <p>Netflix</p>
+              <p><var>300</var></p>
+            </div>
+            <div class="site-name">
+              <p>amazon video</p>
+              <p><var>0</var></p>
+            </div>
+            <div class="site-name">
+              <p>TSUTAYA</p>
+              <p><var>400</var></p>
+            </div>
+          </article>
+        </div>
+      </section>
+      {% endfor %}
+    </div>
+  </article>
+</body>
+{% endblock %}

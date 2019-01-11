@@ -1260,6 +1260,7 @@ body a:hover{
   border-radius: 3px;
   padding: 2px 1em 0 1em;
   margin-right: 1em;
+  cursor: pointer;
 }
 
 #later-list .watched:hover,
@@ -1275,7 +1276,16 @@ body a:hover{
   border: 1px solid rgb(19, 23, 35);
   border-radius: 5px;
   padding:5px;
+  cursor: pointer;
 
+}
+
+#later-list form{
+  display: inline;
+}
+
+#later-list button{
+  background-color: white;
 }
 
 #later-list .menu-container{
