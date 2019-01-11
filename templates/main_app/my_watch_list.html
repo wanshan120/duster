@@ -29,7 +29,7 @@
         <span><a href="#">平均スコア順</a></span>
         <span><a href="#">フォロワースコア順</a></span>
       </div>
-      {% for post in items %}
+      {% for post in my_items %}
       <section class="item-list">
         <div class="left-container">
           {% if post.title.thumnail %}
@@ -41,8 +41,15 @@
             <span class="content-title"><a href="{% url 'main_app:item_detail' post.title.pk %}">{{ post.title }}</a></span>
             <span class="item-year"><a href="">1994</a></span>
             <div class="menu-container">
-              <span class="watched">視聴済</span>
-              <span class="icon-cross"></span>
+              <form action="{% url 'main_app:ajax_stock_list' post.title.id %}" method="POST" name="{{post.title.id}}">
+                <button type="submit" name="stock" id="watchstock_submit{{post.title.id}}" class="watchstock_submit btn btn-primary watched" value="{{post.stock}}">{{ post.get_stock_display }}</button>
+                {% csrf_token %}
+              </form>
+              <form action="{% url 'main_app:ajax_status_list' post.title.id %}" method="POST" name="{{post.title.id}}">
+                <button type="submit" name="status" id="watchstatus_submit{{post.title.id}}" class="watchstatus_submit btn btn-primary icon-cross" value="{{post.status}}"></button>
+                {% csrf_token %}
+              </form>
+
             </div>
           </div>
           <div class="table">
@@ -66,7 +73,7 @@
               <div class="table-row">
                 <p class="short-overview">
                   {{ post.title.synopsis }}
-                <p>
+                </p>
               </div>
             </div>
           </div>
@@ -98,4 +105,73 @@
     </div>
   </article>
 </body>
+<script>
+
+$('.watchstatus_submit').on('click', e => {
+    // デフォルトのイベントをキャンセルし、ページ遷移しないように!
+    e.preventDefault();
+    var v = e.currentTarget.value;
+    var h = e.currentTarget.innerHTML;
+    var pk = e.currentTarget.parentNode.name;
+    console.log('アイテムID：'+pk, 'value:'+v, 'inner'+h);
+    if (v == 0) {
+      e.currentTarget.value = 2
+      e.currentTarget.innerHTML = '';
+    } else if (v == 2){
+      e.currentTarget.value = 0
+      e.currentTarget.innerHTML = '';
+    } else {
+      alert("error")
+    }
+    $.ajax({
+        'url': '/item/my_stock_list/' + pk + '/status/',
+        'type': 'POST',
+        'data': {
+          'csrfmiddlewaretoken': '{{csrf_token}}',
+          'status': e.currentTarget.value,
+          'stock': $('#watchstock_submit'+ pk).val(),
+        },
+        'dataType': 'json'
+    }).done( response => {
+      console.log('Ajax終わり');
+    });
+});
+
+$('.watchstock_submit').on('click', e => {
+    e.preventDefault();
+    var v = e.currentTarget.value;
+    var h = e.currentTarget.innerHTML;
+    var pk = e.currentTarget.parentNode.name;
+    console.log('アイテムID：'+pk, 'value:'+v, 'inner'+h);
+    if (v == 0) {
+      e.currentTarget.value = 2
+      e.currentTarget.innerHTML = '後で見る 解除'
+      $('#watchstock_submit').css({
+        'background-color': 'white',
+        'color': 'rgb(60, 60, 60)'
+      });
+    } else if (v == 2){
+      e.currentTarget.value = 0
+      e.currentTarget.innerHTML = '後で見るへ'
+      $('#watchstock_submit').css({
+        'background-color': 'rgb(19, 23, 35)',
+        'color': 'rgb(225, 236, 242)'
+      });
+    } else {
+      alert("error")
+    }
+    $.ajax({
+        'url': '/item/my_stock_list/' + pk + '/stock/',
+        'type': 'POST',
+        'data': {
+          'csrfmiddlewaretoken': '{{csrf_token}}',
+          'status': $('#watchstatus_submit'+ pk).val(),
+          'stock': e.currentTarget.value,
+        },
+        'dataType': 'json'
+    }).done( response => {
+      // alert(response.stock)
+    });
+});
+</script>
 {% endblock %}

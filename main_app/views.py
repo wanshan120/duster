@@ -176,7 +176,7 @@ class MyWatchList(generic.ListView):
     model = WatchStatus
     paginate_by = 10
     template_name = 'main_app/my_watch_list.html'
-    context_object_name = 'items'
+    context_object_name = 'my_items'
 
     def get_queryset(self):
         items = WatchStatus.objects.filter(

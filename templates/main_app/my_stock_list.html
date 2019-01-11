@@ -110,11 +110,9 @@ $('.watchstatus_submit').on('click', e => {
     if (v == 0) {
       e.currentTarget.value = 2
       e.currentTarget.innerHTML = '視聴済み';
-      alert('0→2')
     } else if (v == 2){
       e.currentTarget.value = 0
       e.currentTarget.innerHTML = '未視聴';
-      alert('2→0')
     } else {
       alert("error")
     }
@@ -133,22 +131,21 @@ $('.watchstatus_submit').on('click', e => {
 });
 
 $('.watchstock_submit').on('click', e => {
-    // デフォルトのイベントをキャンセルし、ページ遷移しないように!
     e.preventDefault();
-    var v = document.getElementsByClassName("watchstock_submit").value;
-    var h = document.getElementsByClassName("watchstock_submit").innerHTML;
-    var pk = e.currentTarget.name;
-    console.log('アイテムID：'+pk);
+    var v = e.currentTarget.value;
+    var h = e.currentTarget.innerHTML;
+    var pk = e.currentTarget.parentNode.name;
+    console.log('アイテムID：'+pk, 'value:'+v, 'inner'+h);
     if (v == 0) {
-      v = 2
-      h = ''
+      e.currentTarget.value = 2
+      e.currentTarget.innerHTML = ''
       $('#watchstock_submit').css({
         'background-color': 'white',
         'color': 'rgb(60, 60, 60)'
       });
     } else if (v == 2){
-      v = 0
-      h = ''
+      e.currentTarget.value = 0
+      e.currentTarget.innerHTML = ''
       $('#watchstock_submit').css({
         'background-color': 'rgb(19, 23, 35)',
         'color': 'rgb(225, 236, 242)'
@@ -161,8 +158,8 @@ $('.watchstock_submit').on('click', e => {
         'type': 'POST',
         'data': {
           'csrfmiddlewaretoken': '{{csrf_token}}',
-          'status': $('#watchstatus_submit').val(),
-          'stock': $('#watchstock_submit').val(),
+          'status': $('#watchstatus_submit'+ pk).val(),
+          'stock': e.currentTarget.value,
         },
         'dataType': 'json'
     }).done( response => {
